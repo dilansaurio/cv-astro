@@ -1,0 +1,45 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  proyectos: CollectionEntry<'proyectos'>[];
+}
+const { proyectos } = Astro.props;
+---
+
+<div class="col-span-1 sm:col-span-2 lg:col-span-2 bg-background-card p-5 sm:p-6 rounded-3xl border border-border flex flex-col">
+  <h2 class="text-lg font-semibold text-text mb-3">Proyectos</h2>
+  <div class="grid grid-cols-3 gap-2 flex-1">
+    {proyectos.map((p) => (
+      <a
+        href={p.data.link ?? `/projects/${p.id}`}
+        target={p.data.link ? "_blank" : "_self"}
+        rel={p.data.link ? "noopener noreferrer" : undefined}
+        class="group flex flex-col rounded-xl overflow-hidden border border-border bg-background hover:border-primary/40 transition-colors"
+      >
+        <div class="aspect-video w-full overflow-hidden">
+          <img
+            src={p.data.image}
+            alt={p.data.title}
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+        </div>
+        <div class="p-2 flex flex-col gap-1.5">
+          <span class="text-xs font-semibold text-text leading-tight">{p.data.title}</span>
+          {p.data.technologies && p.data.technologies.length > 0 && (
+            <div class="flex flex-wrap gap-1">
+              {p.data.technologies.map((tech) => (
+                <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-primary/10 text-primary font-medium leading-none">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+      </a>
+    ))}
+    {proyectos.length === 0 && (
+      <p class="col-span-3 text-text-muted text-xs">Próximamente...</p>
+    )}
+  </div>
+</div>

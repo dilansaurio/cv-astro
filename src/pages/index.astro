@@ -1,0 +1,44 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import ThemeSwitcher from '../components/interactive/ThemeSwitcher';
+import type { CollectionEntry } from 'astro:content';
+import Target01 from '../content/targets/Target-01.astro';
+import Target02 from '../content/targets/Target-02.astro';
+import Target03 from '../content/targets/Target-03.astro';
+import Target04 from '../content/targets/Target-04.astro';
+import Target05 from '../content/targets/Target-05.astro';
+import Target06 from '../content/targets/Target-06.astro';
+import Target07 from '../content/targets/Target-07.astro';
+
+const allProyects: CollectionEntry<'proyectos'>[] = await getCollection('proyectos');
+---
+
+<Layout title=" Dilan Silva Cortes - Front-end Designer">
+  <main class="main-bentogrid">
+    <div class="flex justify-end mb-4 mt-6">
+      <!-- button dark mode -->
+      <ThemeSwitcher client:load />
+    </div>
+    <!-- Bento: 1col mobile → 2col tablet → 4col desktop
+         Row 1: T01 (2col)     | T02 (2col)
+         Row 2: T03 (2col)     | T07 (2col)
+         Row 3: T05 (2col)    | T06 (1col) | T04 (1col)  -->
+    <div class="pb-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <!-- Hero: col 1-2 / row 1 -->
+      <Target01 />
+      <!-- Skills: col 3-4 / row 1 -->
+      <Target02 />
+      <!-- Experiencia: col 1-2 / row 2 -->
+      <Target03 />
+      <!-- Proyectos: col 3-4 / row 2 -->
+      <Target07 proyectos={allProyects} />
+      <!-- Figma: col 1-2 / row 3 -->
+      <Target05 proyectos={allProyects} />
+      <!-- CV: col 3 / row 3 -->
+      <Target06 />
+      <!-- Contactar: col 4 / row 3 -->
+      <Target04 />
+    </div>
+	</main>
+</Layout>

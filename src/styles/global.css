@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* bentogrid */
+.main-bentogrid {
+  @apply 
+    px-4 sm:px-6 lg:px-16 xl:px-[120px] 2xl:px-[200px] 
+    py-6 lg:py-16 
+    min-h-screen -mt-14;
+  background: radial-gradient(ellipse at 70% 65%, #bfdbfe 0%, #f1f5f9 70%);
+}
+
+.dark .main-bentogrid {
+  background: radial-gradient(ellipse at 70% 65%, #142660 0%, #000308 70%);
+}
+
+
+/* Bento skill pills */
+.skill-pill {
+  @apply flex flex-col items-center justify-center
+    w-16 h-16
+    bg-background rounded-xl p-2 text-center
+    transition-transform duration-200 hover:scale-110 cursor-default;
+}
+
+.skill-pill span {
+  @apply text-text text-[10px] sm:text-xs font-medium w-full text-center leading-tight;
+}
+
+@theme {
+  --color-background: #f1f5f9;
+  --color-background-card: #ffffff;
+  --color-border: #cbd5e1;
+  --color-text: #111;
+  --color-text-muted: #64748b;
+  --color-primary: #2563eb;
+  --color-primary-light: #3b82f6;
+  --color-primary-dark: #1e40af;
+}
+
+/* Dark mode: override CSS variables so all utilities auto-switch */
+.dark {
+  --color-background: #18181b;
+  --color-background-card: #0d1220;
+  --color-border: #27272a;
+  --color-text: #f1f5f9;
+  --color-text-muted: #a1a1aa;
+  --color-primary: #60a5fa;
+  --color-primary-light: #93c5fd;
+  --color-primary-dark: #3b82f6;
+}
+
