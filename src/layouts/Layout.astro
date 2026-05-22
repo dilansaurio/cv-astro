@@ -1,5 +1,6 @@
 ---
 import { ClientRouter } from 'astro:transitions';
+import '../styles/global.css';
 interface Props {
 	title: string;
 }
@@ -11,7 +12,6 @@ const { title } = Astro.props;
 		<meta charset="UTF-8" />
 		<link rel="icon" type="image/png" href="/image/avatar.png" />
 		<title>{title}</title>
-		<link rel="stylesheet" href="/src/styles/global.css">
 		<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 		<script is:inline>
 			// Prevent flash: apply dark class before paint
