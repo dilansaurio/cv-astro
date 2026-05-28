@@ -2,13 +2,17 @@
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import ThemeSwitcher from '../components/interactive/ThemeSwitcher';
+import LanguageSwitcher from '../components/interactive/LanguageSwitcher';
 import type { CollectionEntry } from 'astro:content';
+import Target00 from '../content/targets/Target-00.astro';
 import Target01 from '../content/targets/Target-01.astro';
 import Target02 from '../content/targets/Target-02.astro';
 import Target03 from '../content/targets/Target-03.astro';
 import Target04 from '../content/targets/Target-04.astro';
-import Target05 from '../content/targets/Target-05.astro';
-import Target06 from '../content/targets/Target-06.astro';
+import Target08 from '../content/targets/Target-08.astro';
+import Target09 from '../content/targets/Target-09.astro';
+import Target10 from '../content/targets/Target-10.astro';
+// import Target06 from '../content/targets/Target-06.astro';
 import Target07 from '../content/targets/Target-07.astro';
 
 const allProyects: CollectionEntry<'proyectos'>[] = await getCollection('proyectos');
@@ -16,8 +20,9 @@ const allProyects: CollectionEntry<'proyectos'>[] = await getCollection('proyect
 
 <Layout title=" Dilan Silva Cortes - Front-end Designer">
   <main class="main-bentogrid">
-    <div class="flex justify-end mb-4 mt-6">
+    <div class="flex justify-end gap-2 mb-3 mt-2">
       <!-- button dark mode -->
+      <LanguageSwitcher client:load />
       <ThemeSwitcher client:load />
     </div>
     <!-- Bento: 1col mobile → 2col tablet → 4col desktop
@@ -25,20 +30,25 @@ const allProyects: CollectionEntry<'proyectos'>[] = await getCollection('proyect
          Row 2: T03 (2col)     | T07 (2col)
          Row 3: T05 (2col)    | T06 (1col) | T04 (1col)  -->
     <div class="pb-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      <!-- Hero: col 1-2 / row 1 -->
-      <Target01 />
-      <!-- Skills: col 3-4 / row 1 -->
-      <Target02 />
-      <!-- Experiencia: col 1-2 / row 2 -->
+      <!-- Avatar 30% + Hero 70% / row 1 -->
+      <div class="col-span-1 sm:col-span-2 lg:col-span-2 grid grid-cols-[3fr_7fr] gap-4">
+        <Target00 />
+        <Target01 />
+      </div>
+      <!-- Experiencia: col 3-4 / row 1 -->
       <Target03 />
-      <!-- Proyectos: col 3-4 / row 2 -->
+      <!-- Skills: col 1-2 / row 2 -->
+      <Target02 />
+      <!-- Col 3: Proyectos ocupa toda la columna -->
       <Target07 proyectos={allProyects} />
-      <!-- Figma: col 1-2 / row 3 -->
-      <Target05 proyectos={allProyects} />
-      <!-- CV: col 3 / row 3 -->
-      <Target06 />
-      <!-- Contactar: col 4 / row 3 -->
-      <Target04 />
+      <!-- Col 4: LinkedIn/GitHub + Trabajamos juntos + Aprendizaje -->
+      <div class="flex flex-col gap-4">
+        <Target08 />
+        <Target09 />
+        <Target04 />
+      </div>
+      <!-- CV comentado -->
+      {/* <Target06 /> */}
     </div>
 	</main>
 </Layout>

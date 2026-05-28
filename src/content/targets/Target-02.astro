@@ -1,7 +1,7 @@
 ---
 const skills = [
   {
-    category: 'Desarrollo',
+    category: 'Habilidades de Desarrollo',
     items: [
       { name: 'React', icon: 'logos:react' },
       { name: 'React Native', icon: 'logos:react' },
@@ -9,33 +9,56 @@ const skills = [
       { name: 'TypeScript', icon: 'logos:typescript-icon' },
       { name: 'JavaScript', icon: 'logos:javascript' },
       { name: 'Tailwind CSS', icon: 'logos:tailwindcss-icon' },
+      { name: 'Next.js', icon: 'logos:nextjs-icon' },
+      { name: 'shadcn/ui', icon: 'simple-icons:shadcn-ui' },
     ],
   },
   {
-    category: 'Diseño',
+    category: 'Habilidades de Diseño',
     items: [
       { name: 'Figma', icon: 'logos:figma' },
       { name: 'Photoshop', icon: 'logos:adobe-photoshop' },
       { name: 'Illustrator', icon: 'logos:adobe-illustrator' },
+      { name: 'After Effects', icon: 'logos:adobe-after-effects' },
     ],
   },
+  {
+    category: 'Habilidades de Colaboración',
+    items: [
+      { name: 'Git', icon: 'logos:git' },
+      { name: 'GitHub', icon: 'logos:github' },
+      { name: 'Bitbucket', icon: 'logos:bitbucket' },
+    ],
+  },
+  {
+    category: 'Habilidades de Comunicación',
+    items: [
+      { name: 'Inglés Básico',},
+      { name: 'Español (Nativo)',  },
+    ],
+  }
 ];
 
 ---
 <div class="col-span-1 sm:col-span-2 lg:col-span-2 bg-background-card p-5 sm:p-6 lg:p-6 rounded-3xl border border-border text-text flex flex-col gap-3">
-  <h2 class="text-xl font-semibold text-text">Skills</h2>
+  <h2 class="title-section">
+    <iconify-icon icon="mdi:lightning-bolt" class="text-primary" width="22" height="22"></iconify-icon>
+    Stacks & Tecnologías
+  </h2>
 
-  {skills.map(({ category, items }) => (
-    <div class="flex items-center justify-between bg-background rounded-2xl px-5 py-4 gap-3">
-      <span class="text-base font-semibold text-text whitespace-nowrap">{category}</span>
-      <div class="flex items-center gap-3 flex-wrap justify-end">
-        {items.map(({ name, icon, class: iconClass }) => (
-          <span class="relative group/tip cursor-default">
-            <iconify-icon icon={icon} width="40" height="40" class={iconClass}></iconify-icon>
-            <span class="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-background-card border border-border text-text text-sm font-medium rounded-lg opacity-0 group-hover/tip:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-10">{name}</span>
-          </span>
-        ))}
+  <div class="grid grid-cols-2 gap-3">
+    {skills.map(({ category, items }) => (
+      <div class="flex flex-col bg-background rounded-2xl px-4 py-4 gap-3">
+        <span class="text-base text-center font-semibold text-text">{category}</span>
+        <div class="flex items-center gap-2 flex-wrap">
+          {items.map(({ name, icon, class: iconClass }) => (
+            <span class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full border border-border bg-background-card text-text text-xs font-medium">
+              <iconify-icon icon={icon} width="16" height="16" class={iconClass}></iconify-icon>
+              {name}
+            </span>
+          ))}
+        </div>
       </div>
-    </div>
-  ))}
+    ))}
+  </div>
 </div>

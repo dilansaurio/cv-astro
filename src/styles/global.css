@@ -7,10 +7,15 @@
   @apply 
     px-4 sm:px-6 lg:px-16 xl:px-[120px] 2xl:px-[200px] 
     py-6 lg:py-16 
-    min-h-screen -mt-14;
+    min-h-screen -mt-12;
   background: radial-gradient(ellipse at 70% 65%, #bfdbfe 0%, #f1f5f9 70%);
 }
 
+/* title section bentogrid */
+.title-section{ 
+@apply
+    text-xl font-semibold text-text flex items-center justify-center gap-2
+} 
 .dark .main-bentogrid {
   background: radial-gradient(ellipse at 70% 65%, #142660 0%, #000308 70%);
 }
@@ -22,6 +27,10 @@
     w-16 h-16
     bg-background rounded-xl p-2 text-center
     transition-transform duration-200 hover:scale-110 cursor-default;
+}
+
+.text-content {
+  @apply text-text text-sm sm:text-base font-medium w-full text-center leading-tight;
 }
 
 .skill-pill span {
