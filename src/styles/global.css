@@ -2,13 +2,84 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* ── Animatable CSS custom properties for gradient drift ── */
+@property --gx {
+  syntax: '<percentage>';
+  initial-value: 70%;
+  inherits: false;
+}
+@property --gy {
+  syntax: '<percentage>';
+  initial-value: 65%;
+  inherits: false;
+}
+
+/* ── Keyframe animations ── */
+@keyframes bg-drift {
+  0%, 100% { --gx: 70%; --gy: 65%; }
+  33%       { --gx: 18%; --gy: 28%; }
+  66%       { --gx: 85%; --gy: 18%; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-9px); }
+}
+
+@keyframes wiggle {
+  0%, 60%, 100% { transform: rotate(0deg); }
+  20%            { transform: rotate(-25deg); }
+  40%            { transform: rotate(18deg); }
+}
+
+/* ── Animation utility classes ── */
+.animate-fade-up {
+  animation: fade-up 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-wiggle {
+  display: inline-block;
+  animation: wiggle 0.9s ease-in-out 0.6s both;
+}
+
+/* ── Stagger delay helpers ── */
+.delay-1 { animation-delay: 0.05s; }
+.delay-2 { animation-delay: 0.15s; }
+.delay-3 { animation-delay: 0.25s; }
+.delay-4 { animation-delay: 0.35s; }
+.delay-5 { animation-delay: 0.45s; }
+.delay-6 { animation-delay: 0.55s; }
+
+/* ── Bento card hover lift ── */
+.bento-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  will-change: transform;
+}
+.bento-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(37, 99, 235, 0.10);
+}
+.dark .bento-card:hover {
+  box-shadow: 0 16px 40px rgba(96, 165, 250, 0.12);
+}
+
 /* bentogrid */
 .main-bentogrid {
   @apply 
     px-4 sm:px-6 lg:px-16 xl:px-[120px] 2xl:px-[200px] 
     py-6 lg:py-16 
     min-h-screen -mt-12;
-  background: radial-gradient(ellipse at 70% 65%, #bfdbfe 0%, #f1f5f9 70%);
+  background: radial-gradient(ellipse at var(--gx) var(--gy), #bfdbfe 0%, #f1f5f9 70%);
+  animation: bg-drift 22s ease-in-out infinite;
 }
 
 /* title section bentogrid */
@@ -17,7 +88,7 @@
     text-xl font-semibold text-text flex items-center justify-center gap-2
 } 
 .dark .main-bentogrid {
-  background: radial-gradient(ellipse at 70% 65%, #142660 0%, #000308 70%);
+  background: radial-gradient(ellipse at var(--gx) var(--gy), #142660 0%, #000308 70%);
 }
 
 
