@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 
 type Project = {
   id: string;
@@ -69,9 +70,101 @@ function SectionTitle({ title }: { title: string }) {
 
 export default function ProjectsModal({ projects }: Props) {
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => { setMounted(true); }, []);
 
   const webProjects = projects.filter((p) => p.category === 'web');
   const appProjects = projects.filter((p) => p.category === 'app');
+
+  const modal = open && mounted && createPortal(
+    <div
+      className="fixed inset-0 z-9999 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+      onClick={() => setOpen(false)}
+    >
+      <div
+        className="bg-background-card border border-border rounded-3xl w-full max-w-3xl max-h-[85vh] overflow-hidden flex flex-col"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between px-6 py-4 border-b border-border">
+          <h2 className="text-lg font-bold text-text">Proyectos</h2>
+          <button
+            onClick={() => setOpen(false)}
+            className="text-text-muted hover:text-text transition-colors p-1.5 rounded-lg hover:bg-background"
+            aria-label="Cerrar"
+          >
+            {ICON_CLOSE}
+          </button>
+        </div>
+
+        {/* Content — scrollable, sections in column */}
+        <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-6">
+
+          {/* Desarrollo Web */}
+          <section>
+            <SectionTitle title="Desarrollo Web" />
+            <div className="grid grid-cols-2 gap-4">
+              {webProjects.length > 0
+                ? webProjects.map((p) => <ProjectCard key={p.id} p={p} />)
+                : <p className="col-span-2 text-text-muted text-sm">Próximamente...</p>}
+            </div>
+          </section>
+
+          {/* Desarrollo App */}
+          <section>
+            <SectionTitle title="Desarrollo App" />
+            <div className="grid grid-cols-2 gap-4">
+              {appProjects.length > 0
+                ? appProjects.map((p) => <ProjectCard key={p.id} p={p} />)
+                : <p className="col-span-2 text-text-muted text-sm">Próximamente...</p>}
+            </div>
+          </section>
+
+          {/* Diseño UI */}
+          <section>
+            <SectionTitle title="Diseño UI" />
+            <div className="grid grid-cols-2 gap-4">
+              <a
+                href="https://www.figma.com/design/5cacOKKoQyF703jSBFhLgC/Pawhome-App"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col rounded-xl overflow-hidden border border-border bg-background hover:border-primary/40 transition-colors"
+              >
+                <div className="aspect-video w-full overflow-hidden relative">
+                  <img
+                    src="/proyects/pawhome.png"
+                    alt="Pawhome App – Figma"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="bg-black/40 rounded-full p-3">
+                      <svg width="28" height="28" viewBox="0 0 38 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 28.5C19 24.9 21.9 22 25.5 22C29.1 22 32 24.9 32 28.5C32 32.1 29.1 35 25.5 35C21.9 35 19 32.1 19 28.5Z" fill="#1ABCFE"/>
+                        <path d="M6 42C6 38.4 8.9 35.5 12.5 35.5H19V42C19 45.6 16.1 48.5 12.5 48.5C8.9 48.5 6 45.6 6 42Z" fill="#0ACF83"/>
+                        <path d="M19 8.5V22H25.5C29.1 22 32 19.1 32 15.5C32 11.9 29.1 9 25.5 9L19 8.5Z" fill="#FF7262"/>
+                        <path d="M6 15.5C6 19.1 8.9 22 12.5 22H19V9H12.5C8.9 9 6 11.9 6 15.5Z" fill="#F24E1E"/>
+                        <path d="M6 28.5C6 32.1 8.9 35 12.5 35H19V22H12.5C8.9 22 6 24.9 6 28.5Z" fill="#A259FF"/>
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="absolute inset-0 flex items-end justify-center pb-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span className="text-white text-sm font-semibold bg-black/40 px-3 py-1 rounded-full">Ver en Figma →</span>
+                  </div>
+                </div>
+                <div className="p-3 flex flex-col gap-1.5">
+                  <span className="text-sm font-semibold text-text">Pawhome App</span>
+                  <p className="text-xs text-text-muted leading-relaxed">Diseño de aplicación móvil en Figma</p>
+                </div>
+              </a>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </div>,
+    document.body
+  );
 
   return (
     <>
@@ -82,94 +175,7 @@ export default function ProjectsModal({ projects }: Props) {
         Ver Proyectos
         {ICON_ARROW}
       </button>
-
-      {open && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
-          onClick={() => setOpen(false)}
-        >
-          <div
-            className="bg-background-card border border-border rounded-3xl w-full max-w-3xl max-h-[85vh] overflow-hidden flex flex-col"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-border">
-              <h2 className="text-lg font-bold text-text">Proyectos</h2>
-              <button
-                onClick={() => setOpen(false)}
-                className="text-text-muted hover:text-text transition-colors p-1.5 rounded-lg hover:bg-background"
-                aria-label="Cerrar"
-              >
-                {ICON_CLOSE}
-              </button>
-            </div>
-
-            {/* Content — scrollable, sections in column */}
-            <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-6">
-
-              {/* Desarrollo Web */}
-              <section>
-                <SectionTitle title="Desarrollo Web" />
-                <div className="grid grid-cols-2 gap-4">
-                  {webProjects.length > 0
-                    ? webProjects.map((p) => <ProjectCard key={p.id} p={p} />)
-                    : <p className="col-span-2 text-text-muted text-sm">Próximamente...</p>}
-                </div>
-              </section>
-
-              {/* Desarrollo App */}
-              <section>
-                <SectionTitle title="Desarrollo App" />
-                <div className="grid grid-cols-2 gap-4">
-                  {appProjects.length > 0
-                    ? appProjects.map((p) => <ProjectCard key={p.id} p={p} />)
-                    : <p className="col-span-2 text-text-muted text-sm">Próximamente...</p>}
-                </div>
-              </section>
-
-              {/* Diseño UI */}
-              <section>
-                <SectionTitle title="Diseño UI" />
-                <div className="grid grid-cols-2 gap-4">
-                  <a
-                    href="https://www.figma.com/design/5cacOKKoQyF703jSBFhLgC/Pawhome-App"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex flex-col rounded-xl overflow-hidden border border-border bg-background hover:border-primary/40 transition-colors"
-                  >
-                    <div className="aspect-video w-full overflow-hidden relative">
-                      <img
-                        src="/proyects/pawhome.png"
-                        alt="Pawhome App – Figma"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="bg-black/40 rounded-full p-3">
-                          <svg width="28" height="28" viewBox="0 0 38 57" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M19 28.5C19 24.9 21.9 22 25.5 22C29.1 22 32 24.9 32 28.5C32 32.1 29.1 35 25.5 35C21.9 35 19 32.1 19 28.5Z" fill="#1ABCFE"/>
-                            <path d="M6 42C6 38.4 8.9 35.5 12.5 35.5H19V42C19 45.6 16.1 48.5 12.5 48.5C8.9 48.5 6 45.6 6 42Z" fill="#0ACF83"/>
-                            <path d="M19 8.5V22H25.5C29.1 22 32 19.1 32 15.5C32 11.9 29.1 9 25.5 9L19 8.5Z" fill="#FF7262"/>
-                            <path d="M6 15.5C6 19.1 8.9 22 12.5 22H19V9H12.5C8.9 9 6 11.9 6 15.5Z" fill="#F24E1E"/>
-                            <path d="M6 28.5C6 32.1 8.9 35 12.5 35H19V22H12.5C8.9 22 6 24.9 6 28.5Z" fill="#A259FF"/>
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="absolute inset-0 flex items-end justify-center pb-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span className="text-white text-sm font-semibold bg-black/40 px-3 py-1 rounded-full">Ver en Figma →</span>
-                      </div>
-                    </div>
-                    <div className="p-3 flex flex-col gap-1.5">
-                      <span className="text-sm font-semibold text-text">Pawhome App</span>
-                      <p className="text-xs text-text-muted leading-relaxed">Diseño de aplicación móvil en Figma</p>
-                    </div>
-                  </a>
-                </div>
-              </section>
-
-            </div>
-          </div>
-        </div>
-      )}
+      {modal}
     </>
   );
 }
