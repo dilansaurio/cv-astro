@@ -61,15 +61,17 @@
 
 /* ── Bento card hover lift ── */
 .bento-card {
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   will-change: transform;
 }
 .bento-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(37, 99, 235, 0.10);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.3);
 }
 .dark .bento-card:hover {
   box-shadow: 0 16px 40px rgba(96, 165, 250, 0.12);
+  border-color: rgba(96, 165, 250, 0.2);
 }
 
 /* bentogrid */
@@ -78,19 +80,18 @@
     px-4 sm:px-6 lg:px-16 xl:px-[120px] 2xl:px-[200px] 
     py-6 lg:py-16 
     min-h-screen -mt-12;
-  background: radial-gradient(ellipse at var(--gx) var(--gy), #bfdbfe 0%, #f1f5f9 70%);
+  background: radial-gradient(ellipse at var(--gx) var(--gy), #d4d4d8 0%, #e4e4e7 70%);
   animation: bg-drift 22s ease-in-out infinite;
 }
 
 /* title section bentogrid */
-.title-section{ 
-@apply
-    text-xl font-semibold text-text flex items-center justify-center gap-2
+.title-section { 
+  @apply text-lg font-semibold text-text flex items-center justify-center gap-2;
 } 
+
 .dark .main-bentogrid {
   background: radial-gradient(ellipse at var(--gx) var(--gy), #142660 0%, #000308 70%);
 }
-
 
 /* Bento skill pills */
 .skill-pill {
@@ -109,20 +110,22 @@
 }
 
 @theme {
-  --color-background: #f1f5f9;
-  --color-background-card: #ffffff;
-  --color-border: #cbd5e1;
-  --color-text: #111;
-  --color-text-muted: #64748b;
-  --color-primary: #2563eb;
-  --color-primary-light: #3b82f6;
-  --color-primary-dark: #1e40af;
+  /* === MODO CLARO (Grises Neutros / Elementos Negros) === */
+  --color-background: #e4e4e7;
+  --color-background-card: #f4f4f5;
+  --color-border: #a1a1aa;
+  --color-text: #18181b;
+  --color-text-muted: #52525b;
+  
+  --color-primary: #18181b;
+  --color-primary-light: #3f3f46;
+  --color-primary-dark: #000000;
 }
 
-/* Dark mode: override CSS variables so all utilities auto-switch */
+/* === MODO OSCURO (Restaurado con sus azules y valores originales) === */
 .dark {
   --color-background: #18181b;
-  --color-background-card: #0d1220;
+  --color-background-card: #212941;
   --color-border: #27272a;
   --color-text: #f1f5f9;
   --color-text-muted: #a1a1aa;
@@ -130,4 +133,3 @@
   --color-primary-light: #93c5fd;
   --color-primary-dark: #3b82f6;
 }
-

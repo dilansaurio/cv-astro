@@ -3,15 +3,16 @@
     "available": "Disponible",
     "hero": {
       "greeting": "Hola, soy Dilan",
-      "role": "Desarrollador Front-end",
+      "role": "Product Designer / Front-end Developer",
       "description": "+3 años uniendo el diseño UI y el desarrollo frontend. Especializado en transformar prototipos de Figma en aplicaciones web y móviles escalables con React, Next.js y React Native."
     },
     "experience": {
       "title": "Experiencia Laboral",
-      "position": "Desarrollo front-end",
-      "item1": "Rediseño y desarrollo de la app mobile Kefuri usando React Native, TypeScript y Atomic Design.",
-      "item2": "Desarrollo de interfaces responsivas y sistemas de componentes reutilizables para ministerios y entidades públicas (Mineduc, BID) con React, Next.js y Tailwind.",
-      "item3": "Desarrollo de página web con React, Tailwind y la librería shadcn/ui.",
+      "position": "UX/UI Designer & Frontend Developer",
+      "item1": "Kefuri App (Nov 2022 – Mar 2026): Rediseñé la UI y el prototipado de la aplicación, estructurando un Design System basado en Atomic Design en Figma y código. Resultado: reducción del 30% en el tiempo de prototipado.",
+      "item2": "Docentes para Chile – MINEDUC (Nov 2023 – 2025): Lideré la implementación de estilos y layouts responsivos en React.js con Tailwind CSS, manteniendo consistencia visual entre interfaces.",
+      "item3": "Proyecto ADDAI (Nov 2024 – Dic 2024): Adapté estilos y lideré el desarrollo de interfaces responsivas en Vue + Vuetify, creando componentes reutilizables orientados a optimizar el desarrollo web.",
+      "item4": "DOCODE (Oct 2023 – Mar 2026): Responsable del diseño de la interfaz de usuario",
       "company": "Web Intelligence Centre",
       "period": "2023 – 2026"
     },
@@ -52,7 +53,7 @@
     },
     "experience": {
       "title": "Work Experience",
-      "position": "Front-end Development",
+      "position": "Front-end Developer",
       "item1": "Redesign and development of Kefuri mobile app using React Native, TypeScript and Atomic Design.",
       "item2": "Development of responsive interfaces and reusable component systems for ministries and public entities (Mineduc, BID) with React, Next.js and Tailwind.",
       "item3": "Web page development with React, Tailwind and the shadcn/ui library.",

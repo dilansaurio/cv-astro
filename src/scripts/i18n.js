@@ -10,10 +10,10 @@
     es: {
       "available": "Disponible",
       "hero.greeting": "Hola, soy Dilan",
-      "hero.role": "Desarrollador Front-end",
+      "hero.role": "Product Designer / Front-end Developer",
       "hero.description": "+3 años uniendo el diseño UI y el desarrollo frontend. Especializado en transformar prototipos de Figma en aplicaciones web y móviles escalables con React, Next.js y React Native.",
       "experience.title": "Experiencia Laboral",
-      "experience.position": "Desarrollo front-end",
+      "experience.position": "Front-end Developer",
       "experience.item1": "Rediseño y desarrollo de la app mobile Kefuri usando React Native, TypeScript y Atomic Design.",
       "experience.item2": "Desarrollo de interfaces responsivas y sistemas de componentes reutilizables para ministerios y entidades públicas (Mineduc, BID) con React, Next.js y Tailwind.",
       "experience.item3": "Desarrollo de página web con React, Tailwind y la librería shadcn/ui.",

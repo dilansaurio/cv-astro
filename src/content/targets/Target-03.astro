@@ -6,37 +6,189 @@ interface Props {
 }
 
 const { lang } = Astro.props;
+
+// Construimos los datos a partir de tus traducciones para inyectarlos en el modal
+const experiencesData = [
+  {
+    company: getTranslation(lang, 'experience.company'),
+    location: '', // Opcional, puedes agregar una traducción de ciudad si lo deseas
+    period: getTranslation(lang, 'experience.period'),
+    position: getTranslation(lang, 'experience.position'),
+    responsibilities: [
+      getTranslation(lang, 'experience.item1'),
+      getTranslation(lang, 'experience.item2'),
+      getTranslation(lang, 'experience.item3'),
+    ]
+  }
+];
 ---
 
-<div class="col-span-1 sm:col-span-2 lg:col-span-2 bg-background-card p-5 sm:p-6 rounded-3xl border border-border flex flex-col bento-card animate-fade-up delay-2">
-  <h2 class="text-lg font-bold text-text leading-tight mb-1 flex items-center justify-center gap-2 pb-3">
-    <iconify-icon icon="mdi:briefcase" class="text-primary" width="22" height="22"></iconify-icon>
+<!-- 1. TU BENTO CARD PRINCIPAL (Con `relative` y `overflow-hidden` añadidos) -->
+<div class="col-span-1 sm:col-span-2 lg:col-span-2 bg-background-card p-2 md:p-4 rounded-3xl border border-border flex flex-col bento-card animate-fade-up delay-2 relative overflow-hidden">
+  
+  <h2 class="title-section pb-2 z-10 relative flex-shrink-0">
+    <iconify-icon 
+      icon="mdi:briefcase" 
+      class="text-primary" 
+      width="22" height="22" 
+    />
     {getTranslation(lang, 'experience.title')}
   </h2>
  
-  <div class="bg-background rounded-2xl px-4 py-4">
-    <p class="text-sm font-semibold text-text mb-2">&nbsp;{getTranslation(lang, 'experience.position')}</p>
-    <ul class="w-full">
-      <li class="flex items-start gap-2 text-text-muted text-sm 2xl:text-md">
-        <span class="text-primary mt-0.5 shrink-0">-</span>
-        {getTranslation(lang, 'experience.item1')}
-      </li>
-      <li class="flex items-start gap-2 text-text-muted text-sm 2xl:text-md">
-        <span class="text-primary mt-0.5 shrink-0">-</span>
-        {getTranslation(lang, 'experience.item2')}
-      </li>
-      <li class="flex items-start gap-2 text-text-muted text-sm 2xl:text-md">
-        <span class="text-primary mt-0.5 shrink-0">-</span>
-        {getTranslation(lang, 'experience.item3')}
-      </li>
+  <!-- Contenedor para el efecto de difuminado y el botón centrado -->
+  <div class="relative flex-1 min-h-0 mt-1 overflow-hidden rounded-2xl group/card">
+    
+    <!-- Fondo difuminado usando tu código original exacto -->
+    <div class="opacity-40 blur-[1px] pointer-events-none select-none h-full overflow-hidden [mask-image:linear-gradient(to_bottom,black_30%,transparent_90%)]">
       
-    </ul>
-    <div class="w-full flex items-end text-end mt-2">
-      <span class=" text-xs text-text-muted w-full">
-        &nbsp; {getTranslation(lang, 'experience.company')} &nbsp;( {getTranslation(lang, 'experience.period')} )
-      </span>
+      <!-- TU CÓDIGO ORIGINAL -->
+      <div class="bg-background rounded-2xl px-2 py-4 h-full border border-border/50">
+        <p class="text-sm font-semibold text-text mb-2">
+          &nbsp;{getTranslation(lang, 'experience.position')}
+        </p>
+        <ul class="w-full">
+          <li class="flex items-start gap-2 text-text-muted text-sm 2xl:text-md">
+            <span class="text-primary mt-0.5 shrink-0">•</span>
+            {getTranslation(lang, 'experience.item1')}
+          </li>
+          <li class="flex items-start gap-2 text-text-muted text-sm 2xl:text-md">
+            <span class="text-primary mt-0.5 shrink-0">•</span>
+            {getTranslation(lang, 'experience.item2')}
+          </li>
+          <li class="flex items-start gap-2 text-text-muted text-sm 2xl:text-md">
+            <span class="text-primary mt-0.5 shrink-0">•</span>
+            {getTranslation(lang, 'experience.item3')}
+          </li>
+        </ul>
+        <div class="w-full flex items-end text-end mt-2">
+          <span class=" text-xs text-text-muted w-full">
+            &nbsp; {getTranslation(lang, 'experience.company')} &nbsp;( {getTranslation(lang, 'experience.period')} )
+          </span>
+        </div>
+      </div>
+      <!-- FIN DE TU CÓDIGO ORIGINAL -->
+
+    </div>
+
+    <!-- Botón flotante animado sobre el contenido difuminado -->
+    <div class="absolute inset-0 flex items-center justify-center z-10">
+      <button id="btn-open-experience" class="group flex items-center justify-center bg-primary text-white text-xs font-semibold hover:bg-primary-dark transition-all duration-500 ease-in-out rounded-xl p-4 lg:p-5 shadow-lg cursor-pointer">
+        <span class="transform rotate-180 group-hover:rotate-0 transition-transform duration-500 ease-in-out">
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </span>
+        <div class="grid grid-cols-[0fr] group-hover:grid-cols-[1fr] transition-all duration-500 ease-in-out">
+          <span class="overflow-hidden whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out">
+            <span class="pl-2">Ver Experiencia</span>
+          </span>
+        </div>
+      </button>
     </div>
   </div>
-
-  
 </div>
+
+<!-- 2. EL MODAL ESTRUCTURADO EN TIMELINE -->
+<div id="experience-modal" class="fixed inset-0 z-[9999] hidden items-center justify-center p-4 bg-black/60 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+  <div id="experience-modal-content" class="bg-background-card border border-border rounded-3xl w-full max-w-4xl max-h-[85vh] overflow-hidden flex flex-col scale-95 transition-transform duration-300">
+    
+    <!-- Header del modal -->
+    <div class="flex items-center justify-between px-6 py-4 border-b border-border">
+      <h2 class="text-lg font-bold text-text">{getTranslation(lang, 'experience.title')}</h2>
+      <button id="btn-close-experience" class="text-text-muted hover:text-text transition-colors p-1.5 rounded-lg hover:bg-background cursor-pointer" aria-label="Cerrar">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <path d="M18 6 6 18M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Contenido del modal (Timeline) -->
+    <div class="flex-1 overflow-y-auto p-6 md:p-10">
+      <div class="max-w-3xl mx-auto">
+        {experiencesData.map((exp, idx) => (
+          <div class="flex flex-col md:flex-row mb-10 last:mb-0 relative group">
+            
+            <!-- Empresa y Fechas (Izquierda) -->
+            <div class="md:w-[35%] md:pr-8 md:text-right mb-4 md:mb-0 pt-1">
+              <h3 class="text-[13px] font-bold text-text uppercase tracking-wider">{exp.company}</h3>
+              {exp.location && <p class="text-xs text-text-muted mt-1">{exp.location}</p>}
+              <p class="text-xs text-text-muted mt-1">{exp.period}</p>
+            </div>
+            
+            <!-- Cargo y Responsabilidades (Derecha con línea divisoria) -->
+            <div class="md:w-[65%] relative border-l-2 border-border/80 pl-6 md:pl-8 pb-4">
+              
+              <!-- Punto conector del Timeline -->
+              <span class="absolute top-1.5 -left-[9px] w-4 h-4 rounded-full bg-background-card border-2 border-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+                <span class="w-1.5 h-1.5 rounded-full bg-text"></span>
+              </span>
+              
+              <h4 class="text-[15px] font-bold text-text mb-4 leading-none pt-1.5">{exp.position}</h4>
+              
+              <!-- Puntos de experiencia -->
+              <ul class="flex flex-col gap-3">
+                {exp.responsibilities.map(req => (
+                  <li class="flex items-start gap-3 text-text-muted text-[13px] leading-relaxed">
+                    <span class="text-text mt-[6px] shrink-0 text-[10px]">●</span>
+                    <span>{req}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 3. LÓGICA DE APERTURA Y CIERRE (Vanilla JS) -->
+<script>
+  const btnOpen = document.getElementById('btn-open-experience');
+  const btnClose = document.getElementById('btn-close-experience');
+  const modal = document.getElementById('experience-modal');
+  const modalContent = document.getElementById('experience-modal-content');
+
+  function openModal() {
+    if (!modal || !modalContent) return;
+    
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    
+    requestAnimationFrame(() => {
+      modal.classList.remove('opacity-0');
+      modalContent.classList.remove('scale-95');
+      modalContent.classList.add('scale-100');
+    });
+    
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    if (!modal || !modalContent) return;
+    
+    modal.classList.add('opacity-0');
+    modalContent.classList.remove('scale-100');
+    modalContent.classList.add('scale-95');
+    
+    setTimeout(() => {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }, 300);
+  }
+
+  btnOpen?.addEventListener('click', openModal);
+  btnClose?.addEventListener('click', closeModal);
+
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+  
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+      closeModal();
+    }
+  });
+</script>

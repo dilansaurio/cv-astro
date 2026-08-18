@@ -80,7 +80,7 @@ export default function ProjectsModal({ projects }: Props) {
 
   const modal = open && mounted && createPortal(
     <div
-      className="fixed inset-0 z-9999 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
       onClick={() => setOpen(false)}
     >
       <div
@@ -99,10 +99,8 @@ export default function ProjectsModal({ projects }: Props) {
           </button>
         </div>
 
-        {/* Content — scrollable, sections in column */}
+        {/* Content */}
         <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-6">
-
-          {/* Diseño UI */}
           <section>
             <SectionTitle title="Diseño UI" />
             <div className="grid md:grid-cols-4 gap-4">
@@ -112,7 +110,6 @@ export default function ProjectsModal({ projects }: Props) {
             </div>
           </section>
 
-          {/* Desarrollo Web */}
           <section>
             <SectionTitle title="Desarrollo Web" />
             <div className="grid grid-cols-4 gap-4">
@@ -122,7 +119,6 @@ export default function ProjectsModal({ projects }: Props) {
             </div>
           </section>
 
-          {/* Desarrollo App */}
           <section>
             <SectionTitle title="Desarrollo App" />
             <div className="grid md:grid-cols-4 gap-4">
@@ -131,9 +127,6 @@ export default function ProjectsModal({ projects }: Props) {
                 : <p className="col-span-2 text-text-muted text-sm">Próximamente...</p>}
             </div>
           </section>
-
-          
-
         </div>
       </div>
     </div>,
@@ -144,10 +137,19 @@ export default function ProjectsModal({ projects }: Props) {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="flex items-center gap-1.5 px-4 lg:px-10 py-4 lg:py-5 rounded-full bg-primary text-white text-xs font-semibold hover:bg-primary-dark transition-colors"
+        className="cursor-pointer group flex items-center justify-center bg-primary text-white text-xs font-semibold hover:bg-primary-dark transition-all duration-500 ease-in-out rounded-xl p-4 lg:p-5"
       >
-        Ver Proyectos
-        {ICON_ARROW}
+        {/* Flecha: Gira 180 grados (izquierda) por defecto, y 0 grados (derecha) en hover */}
+        <span className="transform rotate-180 group-hover:rotate-0 transition-transform duration-500 ease-in-out">
+          {ICON_ARROW}
+        </span>
+        
+        {/* Contenedor del texto animado con Grid */}
+        <div className="grid grid-cols-[0fr] group-hover:grid-cols-[1fr] transition-all duration-500 ease-in-out">
+          <span className="overflow-hidden whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out">
+            <span className="pl-2">Ver Proyectos</span>
+          </span>
+        </div>
       </button>
       {modal}
     </>
