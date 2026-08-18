@@ -1,29 +1,39 @@
+---
+import { getTranslation, type Language } from '../../i18n/utils';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+---
+
 <div class="col-span-1 sm:col-span-2 lg:col-span-2 bg-background-card p-5 sm:p-6 rounded-3xl border border-border flex flex-col bento-card animate-fade-up delay-2">
   <h2 class="text-lg font-bold text-text leading-tight mb-1 flex items-center justify-center gap-2 pb-3">
     <iconify-icon icon="mdi:briefcase" class="text-primary" width="22" height="22"></iconify-icon>
-    Experiencia Laboral
+    {getTranslation(lang, 'experience.title')}
   </h2>
  
   <div class="bg-background rounded-2xl px-4 py-4">
-    <p class="text-sm font-semibold text-text mb-2">&nbsp;Desarrollo front-end</p>
+    <p class="text-sm font-semibold text-text mb-2">&nbsp;{getTranslation(lang, 'experience.position')}</p>
     <ul class="w-full">
       <li class="flex items-start gap-2 text-text-muted text-sm 2xl:text-md">
         <span class="text-primary mt-0.5 shrink-0">-</span>
-        Rediseño y desarrollo de la app mobile Kefuri usando React Native, TypeScript y Atomic Design.
+        {getTranslation(lang, 'experience.item1')}
       </li>
       <li class="flex items-start gap-2 text-text-muted text-sm 2xl:text-md">
         <span class="text-primary mt-0.5 shrink-0">-</span>
-        Desarrollo de interfaces responsivas y sistemas de componentes reutilizables para ministerios y entidades públicas (Mineduc, BID) con React, Next.js y Tailwind.
+        {getTranslation(lang, 'experience.item2')}
       </li>
       <li class="flex items-start gap-2 text-text-muted text-sm 2xl:text-md">
         <span class="text-primary mt-0.5 shrink-0">-</span>
-        Desarrollo de página web con React, Tailwind y la librería shadcn/ui.
+        {getTranslation(lang, 'experience.item3')}
       </li>
       
     </ul>
     <div class="w-full flex items-end text-end mt-2">
       <span class=" text-xs text-text-muted w-full">
-        &nbsp; Web Intelligence Centre &nbsp;( 2023 – 2026 )
+        &nbsp; {getTranslation(lang, 'experience.company')} &nbsp;( {getTranslation(lang, 'experience.period')} )
       </span>
     </div>
   </div>

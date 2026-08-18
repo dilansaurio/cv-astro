@@ -4,18 +4,22 @@ import { getCollection } from 'astro:content';
 import ThemeSwitcher from '../components/interactive/ThemeSwitcher';
 import LanguageSwitcher from '../components/interactive/LanguageSwitcher';
 import type { CollectionEntry } from 'astro:content';
+import type { Language } from '../i18n/utils';
 import Target00 from '../content/targets/Target-00.astro';
 import Target01 from '../content/targets/Target-01.astro';
 import Target02 from '../content/targets/Target-02.astro';
 import Target03 from '../content/targets/Target-03.astro';
 import Target04 from '../content/targets/Target-04.astro';
+import Target06 from '../content/targets/Target-06.astro';
 import Target08 from '../content/targets/Target-08.astro';
 import Target09 from '../content/targets/Target-09.astro';
 import Target10 from '../content/targets/Target-10.astro';
-// import Target06 from '../content/targets/Target-06.astro';
 import Target07 from '../content/targets/Target-07.astro';
 
 const allProyects: CollectionEntry<'proyectos'>[] = await getCollection('proyectos');
+
+// Default language is Spanish, will be overridden by LanguageSwitcher on client
+const lang: Language = 'es';
 ---
 
 <Layout title=" Dilan Silva Cortes - Front-end Designer">
@@ -32,20 +36,20 @@ const allProyects: CollectionEntry<'proyectos'>[] = await getCollection('proyect
     <div class="pb-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       <!-- Avatar 30% + Hero 70% / row 1 -->
       <div class="col-span-1 sm:col-span-2 lg:col-span-2 grid grid-cols-[3fr_7fr] gap-4 animate-fade-up delay-1">
-        <Target00 />
-        <Target01 />
+        <Target00 lang={lang} />
+        <Target01 lang={lang} />
       </div>
       <!-- Experiencia: col 3-4 / row 1 -->
-      <Target03 />
+      <Target03 lang={lang} />
       <!-- Skills: col 1-2 / row 2 -->
-      <Target02 />
+      <Target02 lang={lang} />
       <!-- Col 3: Proyectos ocupa toda la columna -->
-      <Target07 proyectos={allProyects} />
+      <Target07 lang={lang} proyectos={allProyects} />
       <!-- Col 4: LinkedIn/GitHub + Trabajamos juntos + Aprendizaje -->
       <div class="flex flex-col gap-4 animate-fade-up delay-5">
-        <Target08 />
-        <Target09 />
-        <Target04 />
+        <Target08 lang={lang} />
+        <Target09 lang={lang} />
+        <Target04 lang={lang} />
       </div>
       <!-- CV comentado -->
       {/* <Target06 /> */}

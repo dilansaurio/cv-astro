@@ -1,7 +1,17 @@
+---
+import { type Language } from '../../i18n/utils';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+---
+
 <div class="bg-background-card p-5 sm:p-6 rounded-3xl border border-border flex flex-col gap-4 bento-card">
   <h2 class="text-lg font-bold text-text leading-tight flex items-center justify-center gap-2">
     <iconify-icon icon="mdi:account-network" class="text-primary" width="22" height="22"></iconify-icon>
-    Redes
+    {lang === 'es' ? 'Redes' : 'Networks'}
   </h2>
   <div class="flex items-center justify-center gap-6">
     <a href="https://www.linkedin.com/in/dilansilva" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="text-text hover:text-primary transition-colors">

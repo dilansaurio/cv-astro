@@ -1,0 +1,90 @@
+{
+  "es": {
+    "available": "Disponible",
+    "hero": {
+      "greeting": "Hola, soy Dilan",
+      "role": "Desarrollador Front-end",
+      "description": "+3 años uniendo el diseño UI y el desarrollo frontend. Especializado en transformar prototipos de Figma en aplicaciones web y móviles escalables con React, Next.js y React Native."
+    },
+    "experience": {
+      "title": "Experiencia Laboral",
+      "position": "Desarrollo front-end",
+      "item1": "Rediseño y desarrollo de la app mobile Kefuri usando React Native, TypeScript y Atomic Design.",
+      "item2": "Desarrollo de interfaces responsivas y sistemas de componentes reutilizables para ministerios y entidades públicas (Mineduc, BID) con React, Next.js y Tailwind.",
+      "item3": "Desarrollo de página web con React, Tailwind y la librería shadcn/ui.",
+      "company": "Web Intelligence Centre",
+      "period": "2023 – 2026"
+    },
+    "skills": {
+      "title": "Stacks & Tecnologías",
+      "development": "Habilidades de Desarrollo",
+      "design": "Habilidades de Diseño",
+      "collaboration": "Habilidades de Colaboración",
+      "communication": "Habilidades de Comunicación",
+      "englishLevel": "Inglés A2",
+      "spanishLevel": "Español (Nativo)"
+    },
+    "projects": {
+      "title": "Proyectos",
+      "comingSoon": "Próximamente..."
+    },
+    "education": {
+      "title": "Educación",
+      "cert1": "Certificación React Native - Udemy",
+      "cert2": "Titulo Diseño Gráfico - Inacap"
+    },
+    "contact": {
+      "title": "Contacto",
+      "description": "Abierto a proyectos freelance y nuevas oportunidades laborales.",
+      "downloadCV": "Descargar CV",
+      "sendEmail": "Envíame un Email"
+    },
+    "learning": {
+      "title": "Aprendizaje Continuo"
+    }
+  },
+  "en": {
+    "available": "Available",
+    "hero": {
+      "greeting": "Hi, I'm Dilan",
+      "role": "Front-end Developer",
+      "description": "+3 years merging UI design and frontend development. Specialized in transforming Figma prototypes into scalable web and mobile applications with React, Next.js and React Native."
+    },
+    "experience": {
+      "title": "Work Experience",
+      "position": "Front-end Development",
+      "item1": "Redesign and development of Kefuri mobile app using React Native, TypeScript and Atomic Design.",
+      "item2": "Development of responsive interfaces and reusable component systems for ministries and public entities (Mineduc, BID) with React, Next.js and Tailwind.",
+      "item3": "Web page development with React, Tailwind and the shadcn/ui library.",
+      "company": "Web Intelligence Centre",
+      "period": "2023 – 2026"
+    },
+    "skills": {
+      "title": "Stacks & Technologies",
+      "development": "Development Skills",
+      "design": "Design Skills",
+      "collaboration": "Collaboration Skills",
+      "communication": "Communication Skills",
+      "englishLevel": "English A2",
+      "spanishLevel": "Spanish (Native)"
+    },
+    "projects": {
+      "title": "Projects",
+      "comingSoon": "Coming Soon..."
+    },
+    "education": {
+      "title": "Education",
+      "cert1": "React Native Certification - Udemy",
+      "cert2": "Graphic Design Degree - Inacap"
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Open to freelance projects and new job opportunities.",
+      "downloadCV": "Download CV",
+      "sendEmail": "Send me an Email"
+    },
+    "learning": {
+      "title": "Continuous Learning"
+    }
+  }
+}

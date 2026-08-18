@@ -1,7 +1,15 @@
 ---
+import { getTranslation, type Language } from '../../i18n/utils';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+
 const skills = [
   {
-    category: 'Habilidades de Desarrollo',
+    category: getTranslation(lang, 'skills.development'),
     items: [
       { name: 'React', icon: 'logos:react' },
       { name: 'React Native', icon: 'logos:react' },
@@ -14,7 +22,7 @@ const skills = [
     ],
   },
   {
-    category: 'Habilidades de Diseño',
+    category: getTranslation(lang, 'skills.design'),
     items: [
       { name: 'Figma', icon: 'logos:figma' },
       { name: 'Photoshop', icon: 'logos:adobe-photoshop' },
@@ -23,7 +31,7 @@ const skills = [
     ],
   },
   {
-    category: 'Habilidades de Colaboración',
+    category: getTranslation(lang, 'skills.collaboration'),
     items: [
       { name: 'Git', icon: 'logos:git' },
       { name: 'GitHub', icon: 'logos:github' },
@@ -31,10 +39,10 @@ const skills = [
     ],
   },
   {
-    category: 'Habilidades de Comunicación',
+    category: getTranslation(lang, 'skills.communication'),
     items: [
-      { name: 'Inglés Básico',},
-      { name: 'Español (Nativo)',  },
+      { name: getTranslation(lang, 'skills.englishLevel') },
+      { name: getTranslation(lang, 'skills.spanishLevel') },
     ],
   }
 ];
@@ -43,7 +51,7 @@ const skills = [
 <div class="col-span-1 sm:col-span-2 lg:col-span-2 bg-background-card p-5 sm:p-6 lg:p-6 rounded-3xl border border-border text-text flex flex-col gap-3 bento-card animate-fade-up delay-3">
   <h2 class="title-section">
     <iconify-icon icon="mdi:lightning-bolt" class="text-primary" width="22" height="22"></iconify-icon>
-    Stacks & Tecnologías
+    {getTranslation(lang, 'skills.title')}
   </h2>
 
   <div class="grid grid-cols-2 gap-3">
@@ -53,7 +61,7 @@ const skills = [
         <div class="flex items-center gap-2 flex-wrap">
           {items.map(({ name, icon, class: iconClass }) => (
             <span class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full border border-border bg-background-card text-text text-xs font-medium">
-              <iconify-icon icon={icon} width="16" height="16" class={iconClass}></iconify-icon>
+              {icon && <iconify-icon icon={icon} width="16" height="16" class={iconClass}></iconify-icon>}
               {name}
             </span>
           ))}

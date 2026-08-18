@@ -1,11 +1,21 @@
+---
+import { getTranslation, type Language } from '../../i18n/utils';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+---
+
 <div class="col-span-1 bg-background-card p-5 sm:p-6 rounded-3xl border border-border flex flex-col justify-between min-h-50 bento-card">
   <div>
     <h2 class="justify-center text-base font-bold text-text leading-tight flex items-center gap-2">
       <iconify-icon icon="mdi:handshake" class="text-primary" width="20" height="20"></iconify-icon>
-      Contacto
+      {getTranslation(lang, 'contact.title')}
     </h2>
     <p class="text-text-muted text-xs mt-2 leading-relaxed">
-      Abierto a proyectos freelance y nuevas oportunidades laborales.
+      {getTranslation(lang, 'contact.description')}
     </p>
   </div>
   <div class="flex flex-col gap-2 mt-4">
@@ -16,14 +26,14 @@
       class="flex items-center justify-center gap-2 w-full px-4 py-2 rounded-xl bg-primary text-white text-sm font-semibold hover:bg-primary-dark transition-colors"
     >
       <iconify-icon icon="mdi:file-download" width="16" height="16"></iconify-icon>
-      Descargar CV
+      {getTranslation(lang, 'contact.downloadCV')}
     </a>
     <a
       href="mailto:dilans.matias26@gmail.com"
       class="flex items-center justify-center gap-2 w-full px-4 py-2 rounded-xl border border-border text-text text-sm font-semibold hover:bg-background transition-colors"
     >
       <iconify-icon icon="mdi:email-outline" width="16" height="16"></iconify-icon>
-      Envíame un Email
+      {getTranslation(lang, 'contact.sendEmail')}
     </a>
   </div>
 </div>

@@ -4,18 +4,27 @@ export default function LanguageSwitcher() {
   const [lang, setLang] = useState<'es' | 'en'>('es');
 
   useEffect(() => {
+    // Get language from localStorage, default to 'es'
     const saved = localStorage.getItem('lang') as 'es' | 'en' | null;
     const initial = saved ?? 'es';
+    
     setLang(initial);
+    localStorage.setItem('lang', initial);
     document.documentElement.setAttribute('data-lang', initial);
+    document.documentElement.setAttribute('lang', initial);
   }, []);
 
   const toggleLang = () => {
     const next = lang === 'es' ? 'en' : 'es';
+    
+    // Update state and localStorage
     setLang(next);
     localStorage.setItem('lang', next);
     document.documentElement.setAttribute('data-lang', next);
     document.documentElement.setAttribute('lang', next);
+    
+    // Reload page to update all content
+    window.location.reload();
   };
 
   return (

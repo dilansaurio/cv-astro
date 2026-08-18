@@ -1,11 +1,13 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { getTranslation, type Language } from '../../i18n/utils';
 import ProjectsModal from '../../components/interactive/ProjectsModal';
 
 interface Props {
   proyectos: CollectionEntry<'proyectos'>[];
+  lang: Language;
 }
-const { proyectos } = Astro.props;
+const { proyectos, lang } = Astro.props;
 
 const projectsData = proyectos.map((p) => ({
   id: p.id,
@@ -21,7 +23,7 @@ const projectsData = proyectos.map((p) => ({
 <div class="col-span-1 h-full bg-background-card p-5 sm:p-6 rounded-3xl border border-border flex flex-col bento-card animate-fade-up delay-4">
   <h2 class="text-lg font-semibold text-text mb-3 flex items-center justify-center gap-2">
     <iconify-icon icon="mdi:folder-multiple" class="text-primary" width="22" height="22"></iconify-icon>
-    Proyectos
+    {getTranslation(lang, 'projects.title')}
   </h2>
   <div class="relative flex-1 mt-4">
     <div class="grid grid-cols-2 gap-2 opacity-40 blur-[1px] pointer-events-none select-none">
@@ -53,7 +55,7 @@ const projectsData = proyectos.map((p) => ({
         </div>
       ))}
       {proyectos.length === 0 && (
-        <p class="col-span-3 text-text-muted text-xs">Próximamente...</p>
+        <p class="col-span-3 text-text-muted text-xs">{getTranslation(lang, 'projects.comingSoon')}</p>
       )}
     </div>
     <div class="absolute inset-0 flex items-center justify-center">
