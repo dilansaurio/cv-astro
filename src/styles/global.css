@@ -76,10 +76,12 @@
 
 /* bentogrid */
 .main-bentogrid {
-  @apply 
-    px-4 sm:px-6 lg:px-16 xl:px-[120px] 2xl:px-[200px] 
-    py-6 lg:py-16 
-    min-h-screen -mt-12;
+  @apply
+    box-border w-full px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12
+    py-2 lg:py-3
+    min-h-screen;
+  width: 100%;
+  margin-inline: 0;
   background: radial-gradient(ellipse at var(--gx) var(--gy), #d4d4d8 0%, #e4e4e7 70%);
   animation: bg-drift 22s ease-in-out infinite;
 }

@@ -14,7 +14,9 @@
       "item3": "Proyecto ADDAI (Nov 2024 – Dic 2024): Adapté estilos y lideré el desarrollo de interfaces responsivas en Vue + Vuetify, creando componentes reutilizables orientados a optimizar el desarrollo web.",
       "item4": "DOCODE (Oct 2023 – Mar 2026): Responsable del diseño de la interfaz de usuario",
       "company": "Web Intelligence Centre",
-      "period": "2023 – 2026"
+      "period": "2023 – 2026",
+      "viewMore": "Ver Experiencia",
+      "close": "Cerrar"
     },
     "skills": {
       "title": "Stacks & Tecnologías",
@@ -22,12 +24,41 @@
       "design": "Habilidades de Diseño",
       "collaboration": "Habilidades de Colaboración",
       "communication": "Habilidades de Comunicación",
+      "soft": "Habilidades blandas",
+      "communicationSoft": "Comunicación",
+      "teamwork": "Trabajo en equipo",
+      "adaptability": "Adaptabilidad",
+      "problemSolving": "Resolución de problemas",
       "englishLevel": "Inglés A2",
       "spanishLevel": "Español (Nativo)"
     },
+    "stats": {
+      "projects": "Proyectos",
+      "clients": "Diseñando",
+      "experience": "Experiencia"
+    },
+    "social": {
+      "title": "Redes"
+    },
     "projects": {
       "title": "Proyectos",
-      "comingSoon": "Próximamente..."
+      "comingSoon": "Próximamente...",
+      "view": "Ver Proyectos",
+      "close": "Cerrar",
+      "design": "Diseño UI",
+      "web": "Desarrollo Web",
+      "app": "Desarrollo App"
+    },
+    "workflow": {
+      "title": "Destacados del flujo",
+      "objectives": "Objetivos",
+      "research": "Investigación",
+      "wireframe": "Wireframe",
+      "theme": "Tema",
+      "prototyping": "Prototipado"
+    },
+    "personalSkills": {
+      "title": "Habilidades personales"
     },
     "education": {
       "title": "Educación",
@@ -57,8 +88,11 @@
       "item1": "Redesign and development of Kefuri mobile app using React Native, TypeScript and Atomic Design.",
       "item2": "Development of responsive interfaces and reusable component systems for ministries and public entities (Mineduc, BID) with React, Next.js and Tailwind.",
       "item3": "Web page development with React, Tailwind and the shadcn/ui library.",
+      "item4": "DOCODE (Oct 2023 – Mar 2026): Responsible for user interface design.",
       "company": "Web Intelligence Centre",
-      "period": "2023 – 2026"
+      "period": "2023 – 2026",
+      "viewMore": "View Experience",
+      "close": "Close"
     },
     "skills": {
       "title": "Stacks & Technologies",
@@ -66,12 +100,41 @@
       "design": "Design Skills",
       "collaboration": "Collaboration Skills",
       "communication": "Communication Skills",
+      "soft": "Soft Skills",
+      "communicationSoft": "Communication",
+      "teamwork": "Teamwork",
+      "adaptability": "Adaptability",
+      "problemSolving": "Problem Solving",
       "englishLevel": "English A2",
       "spanishLevel": "Spanish (Native)"
     },
+    "stats": {
+      "projects": "Projects",
+      "clients": "Happy Clients",
+      "experience": "Years of Experience"
+    },
+    "social": {
+      "title": "Networks"
+    },
     "projects": {
       "title": "Projects",
-      "comingSoon": "Coming Soon..."
+      "comingSoon": "Coming Soon...",
+      "view": "View Projects",
+      "close": "Close",
+      "design": "UI Design",
+      "web": "Web Development",
+      "app": "App Development"
+    },
+    "workflow": {
+      "title": "Workflow Highlights",
+      "objectives": "Objectives",
+      "research": "Research",
+      "wireframe": "Wireframe",
+      "theme": "Theme",
+      "prototyping": "Prototyping"
+    },
+    "personalSkills": {
+      "title": "Personal Skills"
     },
     "education": {
       "title": "Education",

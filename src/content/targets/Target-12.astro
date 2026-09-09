@@ -1,0 +1,52 @@
+---
+import { getTranslation, type Language } from '../../i18n/utils';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+
+const skills = [
+  {
+    categoryKey: 'skills.communication',
+    category: getTranslation(lang, 'skills.communication'),
+    items: [
+      { name: getTranslation(lang, 'skills.englishLevel') },
+      { name: getTranslation(lang, 'skills.spanishLevel') },
+    ],
+  },
+  {
+    categoryKey: 'skills.soft',
+    category: getTranslation(lang, 'skills.soft'),
+    items: [
+      { name: getTranslation(lang, 'skills.communicationSoft'), key: 'skills.communicationSoft' },
+      { name: getTranslation(lang, 'skills.teamwork'), key: 'skills.teamwork' },
+      { name: getTranslation(lang, 'skills.adaptability'), key: 'skills.adaptability' },
+      { name: getTranslation(lang, 'skills.problemSolving'), key: 'skills.problemSolving' },
+    ],
+  },
+];
+---
+
+<div class="col-span-1 sm:col-span-2 lg:col-span-4 min-w-0 h-full bg-background-card p-2.5 rounded-3xl border border-border text-text flex flex-col gap-1.5 bento-card animate-fade-up delay-4">
+  <h2 class="title-section text-xs">
+    <iconify-icon icon="mdi:account-heart" class="text-primary" width="16" height="16"></iconify-icon>
+    <span data-i18n="personalSkills.title">{getTranslation(lang, 'personalSkills.title')}</span>
+  </h2>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 flex-1">
+    {skills.map(({ category, categoryKey, items }) => (
+      <div class="flex min-w-0 flex-col bg-background rounded-2xl px-2 py-1.5 gap-1">
+        <span class="text-[12px] text-center font-semibold leading-tight text-text" data-i18n={categoryKey}>{category}</span>
+        <div class="flex items-center gap-1 flex-wrap">
+          {items.map((item) => (
+            <span class="flex min-w-0 items-center px-1.5 py-0.5 rounded-full border border-border bg-background-card text-text text-[12px] font-medium leading-tight">
+              <span data-i18n={'key' in item ? item.key : undefined}>{item.name}</span>
+            </span>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</div>

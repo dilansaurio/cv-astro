@@ -1,5 +1,5 @@
 ---
-import { type Language } from '../../i18n/utils';
+import { getTranslation, type Language } from '../../i18n/utils';
 
 interface Props {
   lang: Language;
@@ -8,17 +8,22 @@ interface Props {
 const { lang } = Astro.props;
 ---
 
-<div class="bg-background-card p-5 sm:p-6 rounded-3xl border border-border flex flex-col gap-4 bento-card">
-  <h2 class="text-lg font-bold text-text leading-tight flex items-center justify-center gap-2">
-    <iconify-icon icon="mdi:account-network" class="text-primary" width="22" height="22"></iconify-icon>
-    {lang === 'es' ? 'Redes' : 'Networks'}
+<div class="col-span-1 bg-background-card p-3 sm:p-4 rounded-3xl border border-border flex flex-col bento-card">
+  <h2 class="text-base font-bold text-text leading-tight mb-1 flex items-center justify-center gap-2 pt-0 pb-0">
+    <iconify-icon icon="mdi:school" class="text-primary" width="20" height="20"></iconify-icon>
+    {getTranslation(lang, 'education.title')}
   </h2>
-  <div class="flex items-center justify-center gap-6">
-    <a href="https://www.linkedin.com/in/dilansilva" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="text-text hover:text-primary transition-colors">
-      <iconify-icon icon="logos:linkedin-icon" width="32" height="32"></iconify-icon>
-    </a>
-    <a href="https://github.com/dilansilva" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="text-text hover:text-primary transition-colors">
-      <iconify-icon icon="mdi:github" width="32" height="32" class="dark:text-white"></iconify-icon>
-    </a>
+
+  <div class="bg-background rounded-2xl px-3 py-3">
+    <ul class="w-full flex flex-col gap-1.5">
+      <li class="flex items-start gap-2 text-xs leading-tight text-text-muted">
+        <span class="text-primary mt-0.5 shrink-0">-</span>
+        {getTranslation(lang, 'education.cert1')}
+      </li>
+      <li class="flex items-start gap-2 text-xs leading-tight text-text-muted">
+        <span class="text-primary mt-0.5 shrink-0">-</span>
+        {getTranslation(lang, 'education.cert2')}
+      </li>
+    </ul>
   </div>
 </div>

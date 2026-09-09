@@ -15,6 +15,9 @@ import Target08 from '../content/targets/Target-08.astro';
 import Target09 from '../content/targets/Target-09.astro';
 import Target10 from '../content/targets/Target-10.astro';
 import Target07 from '../content/targets/Target-07.astro';
+import Target11 from '../content/targets/Target-11.astro';
+import Target12 from '../content/targets/Target-12.astro';
+import Target13 from '../content/targets/Target-13.astro';
 
 const allProyects: CollectionEntry<'proyectos'>[] = await getCollection('proyectos');
 
@@ -23,34 +26,47 @@ const lang: Language = 'es';
 ---
 
 <Layout title=" Dilan Silva Cortes - Front-end Designer">
-  <main class="main-bentogrid">
-    <div class="flex justify-end gap-2 mb-3 mt-2">
+  <main class="main-bentogrid flex flex-col lg:h-screen lg:overflow-hidden">
+    <div class="flex shrink-0 justify-end gap-1.5 mb-1 mt-0.5">
       <!-- button dark mode -->
       <LanguageSwitcher client:load />
       <ThemeSwitcher client:load />
     </div>
-    <!-- Bento: 1col mobile → 2col tablet → 4col desktop
+    <!-- Bento: 2col mobile → 2col tablet → 4col desktop
          Row 1: T01 (2col)     | T02 (2col)
          Row 2: T03 (2col)     | T07 (2col)
          Row 3: T05 (2col)    | T06 (1col) | T04 (1col)  -->
-    <div class="pb-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="pb-3 grid content-start lg:content-center grid-cols-2 lg:grid-cols-4 lg:grid-rows-[175px_auto_auto] items-start gap-2 lg:gap-2.5 max-w-7xl lg:max-w-6xl 2xl:max-w-7xl mx-auto w-full min-w-0 flex-1 min-h-0">
       <!-- Avatar 30% + Hero 70% / row 1 -->
-      <div class="col-span-1 sm:col-span-2 lg:col-span-2 grid grid-cols-[7fr_3fr] gap-4 animate-fade-up delay-1">
+      <div class="col-span-1 sm:col-span-2 lg:col-span-2 grid grid-cols-[7fr_3fr] gap-2 lg:gap-2.5 animate-fade-up delay-1 min-w-0 h-full min-h-0">
         <Target01 lang={lang} />
         <Target00 lang={lang} />
       </div>
-      <!-- Experiencia Laboral: col 3-4 / row 1 -->
-      <Target03 lang={lang} />
-      <!-- Skills: col 1-2 / row 2 -->
-      <Target02 lang={lang} />
-      <!-- Col 3: Proyectos ocupa toda la columna -->
-      <Target07 lang={lang} proyectos={allProyects} />
-      <!-- Col 4: LinkedIn/GitHub + Trabajamos juntos + Aprendizaje -->
-      <div class="flex flex-col gap-4 animate-fade-up delay-5">
+      <!-- Experiencia Laboral 80% + Redes 20% / row 1 -->
+      <div class="col-span-1 sm:col-span-2 lg:col-span-2 grid grid-cols-1 lg:grid-cols-5 gap-2 lg:gap-2.5 min-w-0 h-full min-h-0">
+        <Target03 lang={lang} />
         <Target08 lang={lang} />
-        <Target09 lang={lang} />
-        <Target04 lang={lang} />
       </div>
+      <!-- Skills: col 1-2 / row 2 -->
+      <div class="col-span-1 sm:col-span-2 lg:col-span-2 grid grid-cols-1 lg:grid-cols-[4fr_1fr] gap-2 lg:gap-2.5 min-w-0 items-stretch h-full min-h-0">
+        <Target02 lang={lang} />
+        <Target13 lang={lang} />
+      </div>
+      <!-- Mitad derecha: métricas/proyectos + educación/contacto -->
+      <div class="col-span-1 sm:col-span-2 lg:col-span-2 grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-2.5 min-w-0 items-stretch h-full min-h-0">
+        <div class="flex min-w-0 h-full min-h-0 flex-col gap-1">
+          <Target11 lang={lang} />
+          <div class="flex-1 min-h-0 [&>div]:h-full">
+            <Target07 lang={lang} proyectos={allProyects} />
+          </div>
+        </div>
+        <div class="flex min-w-0 h-full min-h-0 flex-col gap-2 animate-fade-up delay-5">
+          <Target09 lang={lang} />
+          <Target04 lang={lang} />
+        </div>
+      </div>
+      <!-- Última fila: Habilidades personales -->
+      <Target12 lang={lang} />
       <!-- CV comentado -->
       {/* <Target06 /> */}
     </div>

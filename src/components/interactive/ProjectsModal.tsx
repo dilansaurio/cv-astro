@@ -11,6 +11,29 @@ type Project = {
   category?: string;
 };
 
+type Language = 'es' | 'en';
+
+const labels: Record<Language, Record<string, string>> = {
+  es: {
+    title: 'Proyectos',
+    close: 'Cerrar',
+    view: 'Ver Proyectos',
+    design: 'Diseño UI',
+    web: 'Desarrollo Web',
+    app: 'Desarrollo App',
+    comingSoon: 'Próximamente...',
+  },
+  en: {
+    title: 'Projects',
+    close: 'Close',
+    view: 'View Projects',
+    design: 'UI Design',
+    web: 'Web Development',
+    app: 'App Development',
+    comingSoon: 'Coming Soon...',
+  },
+};
+
 interface Props {
   projects: Project[];
 }
@@ -35,12 +58,17 @@ function ProjectCard({ p }: { p: Project }) {
       rel={p.link ? 'noopener noreferrer' : undefined}
       className="group flex flex-col rounded-xl overflow-hidden border border-border bg-background hover:border-primary/40 transition-colors"
     >
-      <div className="aspect-video w-full overflow-hidden">
+      <div className="relative aspect-video w-full overflow-hidden bg-black/20">
         <img
           src={p.image}
           alt={p.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 ${p.category === 'design' ? 'opacity-45' : ''}`}
         />
+        {p.category === 'design' && (
+          <div className="absolute inset-0 z-10 flex items-center justify-center">
+            <iconify-icon icon="logos:figma" width="48" height="48" aria-label="Figma" />
+          </div>
+        )}
       </div>
       <div className="p-3 flex flex-col gap-1.5">
         <span className="text-sm font-semibold text-text">{p.title}</span>
@@ -71,8 +99,15 @@ function SectionTitle({ title }: { title: string }) {
 export default function ProjectsModal({ projects }: Props) {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [lang, setLang] = useState<Language>('es');
 
-  useEffect(() => { setMounted(true); }, []);
+  useEffect(() => {
+    setMounted(true);
+    const saved = localStorage.getItem('lang');
+    if (saved === 'en' || saved === 'es') setLang(saved);
+  }, []);
+
+  const text = labels[lang];
 
   const webProjects = projects.filter((p) => p.category === 'web');
   const appProjects = projects.filter((p) => p.category === 'app');
@@ -89,11 +124,11 @@ export default function ProjectsModal({ projects }: Props) {
       >
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-border">
-          <h2 className="text-lg font-bold text-text">Proyectos</h2>
+          <h2 className="text-lg font-bold text-text">{text.title}</h2>
           <button
             onClick={() => setOpen(false)}
             className="text-text-muted hover:text-text transition-colors p-1.5 rounded-lg hover:bg-background"
-            aria-label="Cerrar"
+            aria-label={text.close}
           >
             {ICON_CLOSE}
           </button>
@@ -102,29 +137,29 @@ export default function ProjectsModal({ projects }: Props) {
         {/* Content */}
         <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-6">
           <section>
-            <SectionTitle title="Diseño UI" />
+            <SectionTitle title={text.design} />
             <div className="grid md:grid-cols-4 gap-4">
               {designProjects.length > 0
                 ? designProjects.map((p) => <ProjectCard key={p.id} p={p} />)
-                : <p className="col-span-2 text-text-muted text-sm">Próximamente...</p>}
+                : <p className="col-span-2 text-text-muted text-sm">{text.comingSoon}</p>}
             </div>
           </section>
 
           <section>
-            <SectionTitle title="Desarrollo Web" />
+            <SectionTitle title={text.web} />
             <div className="grid grid-cols-4 gap-4">
               {webProjects.length > 0
                 ? webProjects.map((p) => <ProjectCard key={p.id} p={p} />)
-                : <p className="col-span-2 text-text-muted text-sm">Próximamente...</p>}
+                : <p className="col-span-2 text-text-muted text-sm">{text.comingSoon}</p>}
             </div>
           </section>
 
           <section>
-            <SectionTitle title="Desarrollo App" />
+            <SectionTitle title={text.app} />
             <div className="grid md:grid-cols-4 gap-4">
               {appProjects.length > 0
                 ? appProjects.map((p) => <ProjectCard key={p.id} p={p} />)
-                : <p className="col-span-2 text-text-muted text-sm">Próximamente...</p>}
+                : <p className="col-span-2 text-text-muted text-sm">{text.comingSoon}</p>}
             </div>
           </section>
         </div>
@@ -147,7 +182,7 @@ export default function ProjectsModal({ projects }: Props) {
         {/* Contenedor del texto animado con Grid */}
         <div className="grid grid-cols-[0fr] group-hover:grid-cols-[1fr] transition-all duration-500 ease-in-out">
           <span className="overflow-hidden whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out">
-            <span className="pl-2">Ver Proyectos</span>
+            <span className="pl-2">{text.view}</span>
           </span>
         </div>
       </button>

@@ -8,9 +8,9 @@ interface Props {
 const { lang } = Astro.props;
 ---
 
-<div class="col-span-1 bg-background-card p-5 sm:p-6 rounded-3xl border border-border flex flex-col justify-between min-h-50 bento-card">
+<div class="col-span-1 bg-background-card p-3 sm:p-4 rounded-3xl border border-border flex flex-col justify-between min-h-50 bento-card">
   <div>
-    <h2 class="justify-center text-base font-bold text-text leading-tight flex items-center gap-2">
+    <h2 class="justify-center text-base font-bold text-text leading-tight flex items-center gap-2 pt-0">
       <iconify-icon icon="mdi:handshake" class="text-primary" width="20" height="20"></iconify-icon>
       {getTranslation(lang, 'contact.title')}
     </h2>
@@ -18,7 +18,7 @@ const { lang } = Astro.props;
       {getTranslation(lang, 'contact.description')}
     </p>
   </div>
-  <div class="flex flex-col gap-2 mt-4">
+  <div class="flex flex-col gap-1.5 mt-3">
     <a
       href="/files/CV_Dilan_Silva_Cortes.pdf"
       target="_blank"

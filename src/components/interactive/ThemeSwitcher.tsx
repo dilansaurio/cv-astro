@@ -38,7 +38,7 @@ export default function ThemeSwitcher() {
 		<button
 			onClick={toggleTheme}
 			aria-label={dark ? 'Activar modo claro' : 'Activar modo oscuro'}
-			className="rounded-full p-2 border border-gray-300 dark:border-zinc-600 bg-white dark:bg-zinc-800 shadow hover:bg-gray-100 dark:hover:bg-zinc-700 text-gray-700 dark:text-gray-200 transition-colors"
+			className="rounded-full p-2 border border-gray-300 cursor-pointer dark:border-zinc-600 bg-white dark:bg-zinc-800 shadow hover:bg-gray-100 dark:hover:bg-zinc-700 text-gray-700 dark:text-gray-200 transition-colors"
 			title={dark ? 'Modo claro' : 'Modo oscuro'}
 		>
 			{dark ? ICON_SUN : ICON_MOON}

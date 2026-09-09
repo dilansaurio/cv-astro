@@ -20,17 +20,17 @@ const projectsData = proyectos.map((p) => ({
 }));
 ---
 
-<div class="col-span-1 h-[545px] max-h-[545px] bg-background-card p-5 sm:p-6 rounded-3xl border border-border flex flex-col bento-card animate-fade-up delay-4 overflow-hidden">
+<div class="col-span-1 min-w-0 bg-background-card p-3 sm:p-4 rounded-3xl border border-border flex flex-col bento-card animate-fade-up delay-4 overflow-hidden">
   <!-- Flex-shrink-0 evita que el encabezado se colapse -->
-  <h2 class="title-section flex-shrink-0">
-    <iconify-icon icon="mdi:folder-multiple" class="text-primary" width="22" height="22"></iconify-icon>
+  <h2 class="title-section text-xs flex-shrink-0">
+    <iconify-icon icon="mdi:folder-multiple" class="text-primary" width="16" height="16"></iconify-icon>
     {getTranslation(lang, 'projects.title')}
   </h2>
   
   <!-- min-h-0 permite flex shrinkage dentro de la tarjeta -->
-  <div class="relative flex-1 min-h-0 mt-4 overflow-hidden rounded-2xl">
+  <div class="relative mt-2 max-h-[200px] overflow-hidden rounded-2xl">
     <!-- Grid adaptativo con degradado suave en la parte inferior -->
-    <div class="grid grid-cols-2 gap-2 opacity-40 blur-[1px] pointer-events-none select-none h-full overflow-hidden [mask-image:linear-gradient(to_bottom,black_50%,transparent)]">
+    <div class="grid grid-cols-2 gap-2 opacity-40 blur-[1px] pointer-events-none select-none max-h-[200px] overflow-hidden [mask-image:linear-gradient(to_bottom,black_50%,transparent)]">
       {proyectos.map((p) => (
         <div class="flex flex-col rounded-xl overflow-hidden border border-border bg-background h-fit">
           <div class="aspect-video w-full overflow-hidden flex-shrink-0">

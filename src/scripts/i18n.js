@@ -19,15 +19,38 @@
       "experience.item3": "Desarrollo de página web con React, Tailwind y la librería shadcn/ui.",
       "experience.company": "Web Intelligence Centre",
       "experience.period": "2023 – 2026",
+      "experience.viewMore": "Ver Experiencia",
+      "experience.close": "Cerrar",
       "skills.title": "Stacks & Tecnologías",
       "skills.development": "Habilidades de Desarrollo",
       "skills.design": "Habilidades de Diseño",
       "skills.collaboration": "Habilidades de Colaboración",
       "skills.communication": "Habilidades de Comunicación",
+      "skills.soft": "Habilidades blandas",
+      "skills.communicationSoft": "Comunicación",
+      "skills.teamwork": "Trabajo en equipo",
+      "skills.adaptability": "Adaptabilidad",
+      "skills.problemSolving": "Resolución de problemas",
       "skills.englishLevel": "Inglés A2",
       "skills.spanishLevel": "Español (Nativo)",
+      "stats.projects": "Proyectos",
+      "stats.clients": "Clientes felices",
+      "stats.experience": "Años de experiencia",
+      "social.title": "Redes",
       "projects.title": "Proyectos",
       "projects.comingSoon": "Próximamente...",
+      "projects.view": "Ver Proyectos",
+      "projects.close": "Cerrar",
+      "projects.design": "Diseño UI",
+      "projects.web": "Desarrollo Web",
+      "projects.app": "Desarrollo App",
+      "workflow.title": "Destacados del flujo",
+      "workflow.objectives": "Objetivos",
+      "workflow.research": "Investigación",
+      "workflow.wireframe": "Wireframe",
+      "workflow.theme": "Tema",
+      "workflow.prototyping": "Prototipado",
+      "personalSkills.title": "Habilidades personales",
       "education.title": "Educación",
       "education.cert1": "Certificación React Native - Udemy",
       "education.cert2": "Titulo Diseño Gráfico - Inacap",
@@ -49,15 +72,38 @@
       "experience.item3": "Web page development with React, Tailwind and the shadcn/ui library.",
       "experience.company": "Web Intelligence Centre",
       "experience.period": "2023 – 2026",
+      "experience.viewMore": "View Experience",
+      "experience.close": "Close",
       "skills.title": "Stacks & Technologies",
       "skills.development": "Development Skills",
       "skills.design": "Design Skills",
       "skills.collaboration": "Collaboration Skills",
       "skills.communication": "Communication Skills",
+      "skills.soft": "Soft Skills",
+      "skills.communicationSoft": "Communication",
+      "skills.teamwork": "Teamwork",
+      "skills.adaptability": "Adaptability",
+      "skills.problemSolving": "Problem Solving",
       "skills.englishLevel": "English A2",
       "skills.spanishLevel": "Spanish (Native)",
+      "stats.projects": "Projects",
+      "stats.clients": "Happy Clients",
+      "stats.experience": "Years of Experience",
+      "social.title": "Networks",
       "projects.title": "Projects",
       "projects.comingSoon": "Coming Soon...",
+      "projects.view": "View Projects",
+      "projects.close": "Close",
+      "projects.design": "UI Design",
+      "projects.web": "Web Development",
+      "projects.app": "App Development",
+      "workflow.title": "Workflow Highlights",
+      "workflow.objectives": "Objectives",
+      "workflow.research": "Research",
+      "workflow.wireframe": "Wireframe",
+      "workflow.theme": "Theme",
+      "workflow.prototyping": "Prototyping",
+      "personalSkills.title": "Personal Skills",
       "education.title": "Education",
       "education.cert1": "React Native Certification - Udemy",
       "education.cert2": "Graphic Design Degree - Inacap",
@@ -86,36 +132,27 @@
   }
   
   function applyTranslations() {
-    // Replace text content by looking for data-i18n attributes
+    // Replace text content by looking for translation attributes
     document.querySelectorAll('[data-i18n]').forEach((el) => {
       const key = el.getAttribute('data-i18n');
       el.textContent = getTranslation(key);
     });
-    
-    // Fallback: replace common text patterns if no data-i18n attributes
-    if (document.querySelectorAll('[data-i18n]').length === 0) {
-      replaceTextInNode(document.body, langData, defaultData);
-    }
-  }
-  
-  function replaceTextInNode(node, langData, defaultData) {
-    for (const [esText, enText] of Object.entries(langData)) {
-      const defaultText = defaultData[esText];
-      if (defaultText && esText !== enText) {
-        replaceText(node, defaultText, enText);
+
+    document.querySelectorAll('[data-i18n-experience]').forEach((el) => {
+      const key = el.getAttribute('data-i18n-experience');
+      if (key === 'company-period') {
+        el.textContent = `${getTranslation('experience.company')} (${getTranslation('experience.period')})`;
+      } else if (key === 'close-button') {
+        const label = getTranslation('experience.close');
+        el.setAttribute('aria-label', label);
+        el.setAttribute('title', label);
+      } else if (key === 'title-modal') {
+        const textNode = [...el.childNodes].reverse().find((node) => node.nodeType === Node.TEXT_NODE);
+        if (textNode) textNode.textContent = getTranslation('experience.title');
+      } else {
+        const textNode = [...el.childNodes].reverse().find((node) => node.nodeType === Node.TEXT_NODE);
+        if (textNode) textNode.textContent = getTranslation(`experience.${key}`);
       }
-    }
-  }
-  
-  function replaceText(node, oldText, newText) {
-    if (node.nodeType === Node.TEXT_NODE) {
-      if (node.textContent.includes(oldText)) {
-        node.textContent = node.textContent.replace(new RegExp(oldText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), newText);
-      }
-    } else {
-      for (let i = 0; i < node.childNodes.length; i++) {
-        replaceText(node.childNodes[i], oldText, newText);
-      }
-    }
+    });
   }
 })();

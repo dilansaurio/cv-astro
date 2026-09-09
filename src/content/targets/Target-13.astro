@@ -1,0 +1,32 @@
+---
+import { getTranslation, type Language } from '../../i18n/utils';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+
+const highlights = [
+  ['workflow.objectives', getTranslation(lang, 'workflow.objectives')],
+  ['workflow.research', getTranslation(lang, 'workflow.research')],
+  ['workflow.wireframe', getTranslation(lang, 'workflow.wireframe')],
+  ['workflow.theme', getTranslation(lang, 'workflow.theme')],
+  ['workflow.prototyping', getTranslation(lang, 'workflow.prototyping')],
+];
+---
+
+<div class="col-span-1 sm:col-span-1 lg:col-span-1 min-w-0 h-full bg-background-card p-2.5 sm:p-3 rounded-3xl border border-border text-text flex flex-col gap-2 bento-card animate-fade-up delay-5">
+  <h2 class="title-section text-xs">
+    <iconify-icon icon="mdi:route" class="text-primary" width="16" height="16"></iconify-icon>
+    <span data-i18n="workflow.title">{getTranslation(lang, 'workflow.title')}</span>
+  </h2>
+
+  <div class="grid h-full min-h-0 flex-1 grid-cols-1 grid-rows-5 gap-1.5">
+    {highlights.map(([key, highlight]) => (
+      <div class="flex min-h-0 min-w-0 items-center justify-center rounded-2xl bg-background px-1 py-2 text-center">
+        <span class="wrap-break-word text-[10px] font-semibold leading-tight" data-i18n={key}>{highlight}</span>
+      </div>
+    ))}
+  </div>
+</div>

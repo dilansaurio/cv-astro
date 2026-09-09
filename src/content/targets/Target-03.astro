@@ -11,7 +11,7 @@ const { lang } = Astro.props;
 const experiencesData = [
   {
     company: getTranslation(lang, 'experience.company'),
-    location: '', // Opcional, puedes agregar una traducción de ciudad si lo deseas
+    location: '',
     period: getTranslation(lang, 'experience.period'),
     position: getTranslation(lang, 'experience.position'),
     responsibilities: [
@@ -19,18 +19,99 @@ const experiencesData = [
       getTranslation(lang, 'experience.item2'),
       getTranslation(lang, 'experience.item3'),
     ]
+  },
+  {
+    company: 'El Carro TV',
+    location: '',
+    period: lang === 'en' ? 'Feb 2020 – Aug 2020' : 'Feb 2020 – Ago 2020',
+    position: lang === 'en' ? 'Lead Designer' : 'Lead Designer',
+    responsibilities: [
+      lang === 'en'
+        ? 'Led the design team, managing deliverable quality and training new members. I developed the brand identity and graphic pieces for live broadcasts.'
+        : 'Lideré el equipo de diseño, gestionando la calidad de entregables y capacitando a nuevos integrantes. Desarrollé la identidad de marca y piezas gráficas para transmisiones en vivo.',
+    ]
+  },
+  {
+    company: 'Publicenter',
+    location: '',
+    period: lang === 'en' ? 'Jul 2019 – Jan 2020' : 'Jul 2019 – Ene 2020',
+    position: lang === 'en' ? 'Graphic Designer' : 'Diseñador Gráfico',
+    responsibilities: [
+      lang === 'en'
+        ? 'Developed graphic pieces, corporate stationery, and branding for different brands, managing several requirements from the area in an agile way.'
+        : 'Desarrollé piezas gráficas, papelería corporativa y branding para distintas marcas, gestionando múltiples requerimientos del área de forma ágil.'
+    ]
   }
 ];
+
+const experienceModalLabels = {
+  es: [
+    {
+      company: 'Web Intelligence Centre',
+      period: '2023 – 2026',
+      position: 'UX/UI Designer & Frontend Developer',
+      responsibilities: [
+        'Kefuri App (Nov 2022 – Mar 2026): Rediseñé la UI y el prototipado de la aplicación, estructurando un Design System basado en Atomic Design en Figma y código. Resultado: reducción del 30% en el tiempo de prototipado.',
+        'Docentes para Chile – MINEDUC (Nov 2023 – 2025): Lideré la implementación de estilos y layouts responsivos en React.js con Tailwind CSS, manteniendo consistencia visual entre interfaces.',
+        'Proyecto ADDAI (Nov 2024 – Dic 2024): Adapté estilos y lideré el desarrollo de interfaces responsivas en Vue + Vuetify, creando componentes reutilizables orientados a optimizar el desarrollo web.'
+      ]
+    },
+    {
+      company: 'El Carro TV',
+      period: 'Feb 2020 – Ago 2020',
+      position: 'Lead Designer',
+      responsibilities: [
+        'Lideré el equipo de diseño, gestionando la calidad de entregables y capacitando a nuevos integrantes. Desarrollé la identidad de marca y piezas gráficas para transmisiones en vivo.'
+      ]
+    },
+    {
+      company: 'Publicenter',
+      period: 'Jul 2019 – Ene 2020',
+      position: 'Diseñador Gráfico',
+      responsibilities: [
+        'Desarrollé piezas gráficas, papelería corporativa y branding para distintas marcas, gestionando múltiples requerimientos del área de forma ágil.'
+      ]
+    }
+  ],
+  en: [
+    {
+      company: 'Web Intelligence Centre',
+      period: '2023 – 2026',
+      position: 'Front-end Developer',
+      responsibilities: [
+        'Redesign and development of Kefuri mobile app using React Native, TypeScript and Atomic Design.',
+        'Development of responsive interfaces and reusable component systems for ministries and public entities (Mineduc, BID) with React, Next.js and Tailwind.',
+        'Web page development with React, Tailwind and the shadcn/ui library.'
+      ]
+    },
+    {
+      company: 'El Carro TV',
+      period: 'Feb 2020 – Aug 2020',
+      position: 'Lead Designer',
+      responsibilities: [
+        'Led the design team, managing deliverable quality and training new members. I developed the brand identity and graphic pieces for live broadcasts.'
+      ]
+    },
+    {
+      company: 'Publicenter',
+      period: 'Jul 2019 – Jan 2020',
+      position: 'Graphic Designer',
+      responsibilities: [
+        'Developed graphic pieces, corporate stationery, and branding for different brands, managing several requirements from the area in an agile way.'
+      ]
+    }
+  ]
+};
 ---
 
 <!-- 1. TU BENTO CARD PRINCIPAL (Con `relative` y `overflow-hidden` añadidos) -->
-<div class="col-span-1 sm:col-span-2 lg:col-span-2 bg-background-card p-2 md:p-4 rounded-3xl border border-border flex flex-col bento-card animate-fade-up delay-2 relative overflow-hidden">
+<div class="col-span-1 lg:col-span-4 min-w-0 h-full bg-background-card p-2 md:p-3 rounded-3xl border border-border flex flex-col bento-card animate-fade-up delay-2 relative overflow-hidden lg:min-h-0">
   
-  <h2 class="title-section pb-2 z-10 relative flex-shrink-0">
+  <h2 class="title-section text-xs pb-1 z-10 relative flex-shrink-0" data-i18n-experience="title">
     <iconify-icon 
       icon="mdi:briefcase" 
       class="text-primary" 
-      width="22" height="22" 
+      width="16" height="16"
     />
     {getTranslation(lang, 'experience.title')}
   </h2>
@@ -42,26 +123,26 @@ const experiencesData = [
     <div class="opacity-40 blur-[1px] pointer-events-none select-none h-full overflow-hidden [mask-image:linear-gradient(to_bottom,black_30%,transparent_90%)]">
       
       <!-- TU CÓDIGO ORIGINAL -->
-      <div class="bg-background rounded-2xl px-2 py-4 h-full border border-border/50">
-        <p class="text-sm font-semibold text-text mb-2">
+      <div class="bg-background rounded-2xl px-2 py-3 h-full border border-border/50">
+        <p class="text-xs font-semibold text-text mb-1" data-i18n-experience="position">
           &nbsp;{getTranslation(lang, 'experience.position')}
         </p>
         <ul class="w-full">
-          <li class="flex items-start gap-2 text-text-muted text-sm 2xl:text-md">
+          <li data-i18n-experience="item1" class="flex items-start gap-2 text-xs leading-tight">
             <span class="text-primary mt-0.5 shrink-0">•</span>
             {getTranslation(lang, 'experience.item1')}
           </li>
-          <li class="flex items-start gap-2 text-text-muted text-sm 2xl:text-md">
+          <li data-i18n-experience="item2" class="flex items-start gap-2 text-xs leading-tight">
             <span class="text-primary mt-0.5 shrink-0">•</span>
             {getTranslation(lang, 'experience.item2')}
           </li>
-          <li class="flex items-start gap-2 text-text-muted text-sm 2xl:text-md">
+          <li data-i18n-experience="item3" class="flex items-start gap-2 text-xs leading-tight">
             <span class="text-primary mt-0.5 shrink-0">•</span>
             {getTranslation(lang, 'experience.item3')}
           </li>
         </ul>
         <div class="w-full flex items-end text-end mt-2">
-          <span class=" text-xs text-text-muted w-full">
+          <span class=" text-xs text-text-muted w-full" data-i18n-experience="company-period">
             &nbsp; {getTranslation(lang, 'experience.company')} &nbsp;( {getTranslation(lang, 'experience.period')} )
           </span>
         </div>
@@ -72,7 +153,7 @@ const experiencesData = [
 
     <!-- Botón flotante animado sobre el contenido difuminado -->
     <div class="absolute inset-0 flex items-center justify-center z-10">
-      <button id="btn-open-experience" class="group flex items-center justify-center bg-primary text-white text-xs font-semibold hover:bg-primary-dark transition-all duration-500 ease-in-out rounded-xl p-4 lg:p-5 shadow-lg cursor-pointer">
+      <button id="btn-open-experience" type="button" onclick="window.openExperienceModal && window.openExperienceModal()" class="group flex items-center justify-center bg-primary text-white text-xs font-semibold hover:bg-primary-dark transition-all duration-500 ease-in-out rounded-xl p-4 lg:p-5 shadow-lg cursor-pointer">
         <span class="transform rotate-180 group-hover:rotate-0 transition-transform duration-500 ease-in-out">
           <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
             <path d="M5 12h14M12 5l7 7-7 7" />
@@ -80,7 +161,7 @@ const experiencesData = [
         </span>
         <div class="grid grid-cols-[0fr] group-hover:grid-cols-[1fr] transition-all duration-500 ease-in-out">
           <span class="overflow-hidden whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out">
-            <span class="pl-2">Ver Experiencia</span>
+            <span class="pl-2" data-i18n-experience="viewMore">{getTranslation(lang, 'experience.viewMore')}</span>
           </span>
         </div>
       </button>
@@ -94,8 +175,8 @@ const experiencesData = [
     
     <!-- Header del modal -->
     <div class="flex items-center justify-between px-6 py-4 border-b border-border">
-      <h2 class="text-lg font-bold text-text">{getTranslation(lang, 'experience.title')}</h2>
-      <button id="btn-close-experience" class="text-text-muted hover:text-text transition-colors p-1.5 rounded-lg hover:bg-background cursor-pointer" aria-label="Cerrar">
+      <h2 class="text-lg font-bold text-text" data-i18n-experience="title-modal">{getTranslation(lang, 'experience.title')}</h2>
+      <button id="btn-close-experience" class="text-text-muted hover:text-text transition-colors p-1.5 rounded-lg hover:bg-background cursor-pointer" aria-label={getTranslation(lang, 'experience.close')} title={getTranslation(lang, 'experience.close')} data-i18n-experience="close-button">
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
           <path d="M18 6 6 18M6 6l12 12" />
         </svg>
@@ -104,7 +185,7 @@ const experiencesData = [
 
     <!-- Contenido del modal (Timeline) -->
     <div class="flex-1 overflow-y-auto p-6 md:p-10">
-      <div class="max-w-3xl mx-auto">
+      <div class="max-w-3xl mx-auto" data-experience-list>
         {experiencesData.map((exp, idx) => (
           <div class="flex flex-col md:flex-row mb-10 last:mb-0 relative group">
             
@@ -144,51 +225,154 @@ const experiencesData = [
 </div>
 
 <!-- 3. LÓGICA DE APERTURA Y CIERRE (Vanilla JS) -->
-<script>
-  const btnOpen = document.getElementById('btn-open-experience');
-  const btnClose = document.getElementById('btn-close-experience');
-  const modal = document.getElementById('experience-modal');
-  const modalContent = document.getElementById('experience-modal-content');
+<script is:inline>
+  window.experienceModalLabels = {
+    es: [
+      {
+        company: 'Web Intelligence Centre',
+        period: '2023 – 2026',
+        position: 'UX/UI Designer & Frontend Developer',
+        responsibilities: [
+          'Kefuri App (Nov 2022 – Mar 2026): Rediseñé la UI y el prototipado de la aplicación, estructurando un Design System basado en Atomic Design en Figma y código. Resultado: reducción del 30% en el tiempo de prototipado.',
+          'Docentes para Chile – MINEDUC (Nov 2023 – 2025): Lideré la implementación de estilos y layouts responsivos en React.js con Tailwind CSS, manteniendo consistencia visual entre interfaces.',
+          'Proyecto ADDAI (Nov 2024 – Dic 2024): Adapté estilos y lideré el desarrollo de interfaces responsivas en Vue + Vuetify, creando componentes reutilizables orientados a optimizar el desarrollo web.'
+        ]
+      },
+      {
+        company: 'El Carro TV',
+        period: 'Feb 2020 – Ago 2020',
+        position: 'Lead Designer',
+        responsibilities: [
+          'Lideré el equipo de diseño, gestionando la calidad de entregables y capacitando a nuevos integrantes. Desarrollé la identidad de marca y piezas gráficas para transmisiones en vivo.'
+        ]
+      },
+      {
+        company: 'Publicenter',
+        period: 'Jul 2019 – Ene 2020',
+        position: 'Diseñador Gráfico',
+        responsibilities: [
+          'Desarrollé piezas gráficas, papelería corporativa y branding para distintas marcas, gestionando múltiples requerimientos del área de forma ágil.'
+        ]
+      }
+    ],
+    en: [
+      {
+        company: 'Web Intelligence Centre',
+        period: '2023 – 2026',
+        position: 'Front-end Developer',
+        responsibilities: [
+          'Redesign and development of Kefuri mobile app using React Native, TypeScript and Atomic Design.',
+          'Development of responsive interfaces and reusable component systems for ministries and public entities (Mineduc, BID) with React, Next.js and Tailwind.',
+          'Web page development with React, Tailwind and the shadcn/ui library.'
+        ]
+      },
+      {
+        company: 'El Carro TV',
+        period: 'Feb 2020 – Aug 2020',
+        position: 'Lead Designer',
+        responsibilities: [
+          'Led the design team, managing deliverable quality and training new members. I developed the brand identity and graphic pieces for live broadcasts.'
+        ]
+      },
+      {
+        company: 'Publicenter',
+        period: 'Jul 2019 – Jan 2020',
+        position: 'Graphic Designer',
+        responsibilities: [
+          'Developed graphic pieces, corporate stationery, and branding for different brands, managing several requirements from the area in an agile way.'
+        ]
+      }
+    ]
+  };
 
-  function openModal() {
+  window.updateExperienceModalTexts = function () {
+    const currentLang = localStorage.getItem('lang') || 'es';
+    const items = window.experienceModalLabels[currentLang] || window.experienceModalLabels.es;
+    const listNode = document.querySelector('[data-experience-list]');
+    const btnClose = document.getElementById('btn-close-experience');
+
+    if (btnClose) {
+      const label = currentLang === 'en' ? 'Close' : 'Cerrar';
+      btnClose.setAttribute('aria-label', label);
+      btnClose.setAttribute('title', label);
+    }
+
+    if (!listNode) return;
+
+    listNode.innerHTML = items.map((exp) => `
+      <div class="flex flex-col md:flex-row mb-10 last:mb-0 relative group">
+        <div class="md:w-[35%] md:pr-8 md:text-right mb-4 md:mb-0 pt-1">
+          <h3 class="text-[13px] font-bold text-text uppercase tracking-wider">${exp.company}</h3>
+          <p class="text-xs text-text-muted mt-1">${exp.period}</p>
+        </div>
+        <div class="md:w-[65%] relative border-l-2 border-border/80 pl-6 md:pl-8 pb-4">
+          <span class="absolute top-1.5 -left-[9px] w-4 h-4 rounded-full bg-background-card border-2 border-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="w-1.5 h-1.5 rounded-full bg-text"></span>
+          </span>
+          <h4 class="text-[15px] font-bold text-text mb-4 leading-none pt-1.5">${exp.position}</h4>
+          <ul class="flex flex-col gap-3">
+            ${exp.responsibilities.map((req) => `
+              <li class="flex items-start gap-3 text-text-muted text-[13px] leading-relaxed">
+                <span class="text-text mt-[6px] shrink-0 text-[10px]">●</span>
+                <span>${req}</span>
+              </li>
+            `).join('')}
+          </ul>
+        </div>
+      </div>
+    `).join('');
+  };
+
+  window.openExperienceModal = function () {
+    const modal = document.getElementById('experience-modal');
+    const modalContent = document.getElementById('experience-modal-content');
     if (!modal || !modalContent) return;
-    
+
+    window.updateExperienceModalTexts();
+
     modal.classList.remove('hidden');
     modal.classList.add('flex');
-    
+
     requestAnimationFrame(() => {
       modal.classList.remove('opacity-0');
       modalContent.classList.remove('scale-95');
       modalContent.classList.add('scale-100');
     });
-    
-    document.body.style.overflow = 'hidden';
-  }
 
-  function closeModal() {
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeExperienceModal = function () {
+    const modal = document.getElementById('experience-modal');
+    const modalContent = document.getElementById('experience-modal-content');
     if (!modal || !modalContent) return;
-    
+
     modal.classList.add('opacity-0');
     modalContent.classList.remove('scale-100');
     modalContent.classList.add('scale-95');
-    
+
     setTimeout(() => {
       modal.classList.add('hidden');
       modal.classList.remove('flex');
       document.body.style.overflow = '';
     }, 300);
-  }
+  };
 
-  btnOpen?.addEventListener('click', openModal);
-  btnClose?.addEventListener('click', closeModal);
+  document.addEventListener('DOMContentLoaded', () => {
+    const btnOpen = document.getElementById('btn-open-experience');
+    const btnClose = document.getElementById('btn-close-experience');
+    const modal = document.getElementById('experience-modal');
 
-  modal?.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
-  });
-  
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
-      closeModal();
-    }
+    btnOpen?.addEventListener('click', window.openExperienceModal);
+    btnClose?.addEventListener('click', window.closeExperienceModal);
+    modal?.addEventListener('click', (event) => {
+      if (event.target === modal) window.closeExperienceModal();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+        window.closeExperienceModal();
+      }
+    });
   });
 </script>

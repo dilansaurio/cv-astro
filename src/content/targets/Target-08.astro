@@ -8,22 +8,19 @@ interface Props {
 const { lang } = Astro.props;
 ---
 
-<div class="col-span-1 bg-background-card p-5 sm:p-6 rounded-3xl border border-border flex flex-col bento-card">
-  <h2 class="text-lg font-bold text-text leading-tight mb-1 flex items-center justify-center gap-2 pb-3">
-    <iconify-icon icon="mdi:school" class="text-primary" width="22" height="22"></iconify-icon>
-    {getTranslation(lang, 'education.title')}
+<div class="col-span-1 lg:col-span-1 bg-background-card p-3 sm:p-4 lg:p-3 rounded-3xl border border-border flex flex-col items-center justify-center gap-3 bento-card">
+  <h2 class="text-base font-bold text-text leading-tight flex items-center justify-center gap-2 pt-0">
+    <iconify-icon icon="mdi:account-network" class="text-primary" width="20" height="20"></iconify-icon>
+    <span data-i18n="social.title">{getTranslation(lang, 'social.title')}</span>
   </h2>
-
-  <div class="bg-background rounded-2xl px-4 py-4">
-    <ul class="w-full flex flex-col gap-2">
-      <li class="flex items-start gap-2 text-text-muted text-sm 2xl:text-md">
-        <span class="text-primary mt-0.5 shrink-0">-</span>
-        {getTranslation(lang, 'education.cert1')}
-      </li>
-      <li class="flex items-start gap-2 text-text-muted text-sm 2xl:text-md">
-        <span class="text-primary mt-0.5 shrink-0">-</span>
-        {getTranslation(lang, 'education.cert2')}
-      </li>
-    </ul>
+  <div class="flex w-full flex-col justify-center gap-2">
+    <a href="https://www.linkedin.com/in/dilansilva" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="flex w-full min-w-0 items-center justify-center gap-1.5 rounded-2xl bg-black px-2 py-2 text-white transition-colors hover:bg-zinc-800">
+      <iconify-icon icon="logos:linkedin-icon" width="20" height="20" class="shrink-0"></iconify-icon>
+      <span class="whitespace-nowrap text-xs font-semibold">LinkedIn</span>
+    </a>
+    <a href="https://github.com/dilansilva" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="flex w-full min-w-0 items-center justify-center gap-1.5 rounded-2xl bg-black px-2 py-2 text-white transition-colors hover:bg-zinc-800">
+      <iconify-icon icon="mdi:github" width="20" height="20" class="shrink-0 text-white"></iconify-icon>
+      <span class="whitespace-nowrap text-xs font-semibold">GitHub</span>
+    </a>
   </div>
 </div>

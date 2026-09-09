@@ -1,0 +1,41 @@
+---
+import { getTranslation, type Language } from '../../i18n/utils';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+---
+
+<div class="grid grid-cols-3 gap-1.5">
+  <div class="min-w-0 rounded-2xl border border-border bg-background-card px-1.5 py-2 sm:px-2">
+    <div class="flex items-center justify-center gap-1 text-xl font-light leading-none text-text">
+      <span>05</span><span class="text-primary">+</span>
+    </div>
+    <div class="mt-1.5 flex min-w-0 items-center justify-center gap-1 text-[9px] font-medium leading-tight text-text-muted sm:text-[10px]">
+      <iconify-icon icon="mdi:folder-multiple" class="shrink-0 text-primary" width="13" height="13"></iconify-icon>
+      <span class="truncate" data-i18n="stats.projects">{getTranslation(lang, 'stats.projects')}</span>
+    </div>
+  </div>
+
+  <div class="min-w-0 rounded-2xl border border-border bg-background-card px-1.5 py-2 sm:px-2">
+    <div class="flex items-center justify-center gap-1 text-xl font-light leading-none text-text">
+      <span>07</span><span class="text-primary">+</span>
+    </div>
+    <div class="mt-1.5 flex min-w-0 items-center justify-center gap-1 text-[9px] font-medium leading-tight text-text-muted sm:text-[10px]">
+      <iconify-icon icon="mdi:account-heart" class="shrink-0 text-primary" width="13" height="13"></iconify-icon>
+      <span class="truncate" data-i18n="stats.clients">{getTranslation(lang, 'stats.clients')}</span>
+    </div>
+  </div>
+
+  <div class="min-w-0 rounded-2xl border border-border bg-background-card px-1.5 py-2 sm:px-2">
+    <div class="flex items-center justify-center gap-1 text-xl font-light leading-none text-text">
+      <span>04</span><span class="text-primary">+</span>
+    </div>
+    <div class="mt-1.5 flex min-w-0 items-center justify-center gap-1 text-[9px] font-medium leading-tight text-text-muted sm:text-[10px]">
+      <iconify-icon icon="mdi:star-four-points" class="shrink-0 text-primary" width="13" height="13"></iconify-icon>
+      <span class="truncate" data-i18n="stats.experience">{getTranslation(lang, 'stats.experience')}</span>
+    </div>
+  </div>
+</div>
