@@ -18,6 +18,7 @@ const labels: Record<Language, Record<string, string>> = {
     title: 'Proyectos',
     close: 'Cerrar',
     view: 'Ver Proyectos',
+    viewProject: 'Ver proyecto',
     design: 'Diseño UI',
     web: 'Desarrollo Web',
     app: 'Desarrollo App',
@@ -27,6 +28,7 @@ const labels: Record<Language, Record<string, string>> = {
     title: 'Projects',
     close: 'Close',
     view: 'View Projects',
+    viewProject: 'View project',
     design: 'UI Design',
     web: 'Web Development',
     app: 'App Development',
@@ -50,15 +52,10 @@ const ICON_ARROW = (
   </svg>
 );
 
-function ProjectCard({ p }: { p: Project }) {
+function ProjectCard({ p, viewLabel }: { p: Project; viewLabel: string }) {
   return (
-    <a
-      href={p.link ?? `/projects/${p.id}`}
-      target={p.link ? '_blank' : '_self'}
-      rel={p.link ? 'noopener noreferrer' : undefined}
-      className="group flex flex-col rounded-xl overflow-hidden border border-border bg-background hover:border-primary/40 transition-colors"
-    >
-      <div className="relative aspect-video w-full overflow-hidden bg-black/20">
+    <article className="group flex min-w-0 flex-row overflow-hidden rounded-xl border border-border bg-background transition-colors hover:border-primary/40">
+      <div className="relative aspect-video w-2/5 shrink-0 self-center overflow-hidden bg-black/20 sm:w-1/3">
         <img
           src={p.image}
           alt={p.title}
@@ -70,11 +67,11 @@ function ProjectCard({ p }: { p: Project }) {
           </div>
         )}
       </div>
-      <div className="p-3 flex flex-col gap-1.5">
-        <span className="text-sm font-semibold text-text">{p.title}</span>
-        <p className="text-xs text-text-muted leading-relaxed">{p.description}</p>
+      <div className="flex min-w-0 flex-1 flex-col items-start gap-1.5 p-3">
+        <h4 className="text-sm font-semibold text-text">{p.title}</h4>
+        <p className="text-xs leading-relaxed text-text-muted">{p.description}</p>
         {p.technologies && p.technologies.length > 0 && (
-          <div className="flex flex-wrap gap-1 mt-1">
+          <div className="mt-1 flex flex-wrap gap-1">
             {p.technologies.map((tech) => (
               <span key={tech} className="text-[10px] px-1.5 py-0.5 rounded-full bg-primary/10 text-primary font-medium">
                 {tech}
@@ -82,8 +79,17 @@ function ProjectCard({ p }: { p: Project }) {
             ))}
           </div>
         )}
+        <a
+          href={p.link ?? `/projects/${p.id}`}
+          target={p.link ? '_blank' : '_self'}
+          rel={p.link ? 'noopener noreferrer' : undefined}
+          className="mt-1 inline-flex items-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-primary-dark"
+        >
+          {viewLabel}
+          {ICON_ARROW}
+        </a>
       </div>
-    </a>
+    </article>
   );
 }
 
@@ -138,28 +144,28 @@ export default function ProjectsModal({ projects }: Props) {
         <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-6">
           <section>
             <SectionTitle title={text.design} />
-            <div className="grid md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 gap-3">
               {designProjects.length > 0
-                ? designProjects.map((p) => <ProjectCard key={p.id} p={p} />)
-                : <p className="col-span-2 text-text-muted text-sm">{text.comingSoon}</p>}
+                ? designProjects.map((p) => <ProjectCard key={p.id} p={p} viewLabel={text.viewProject} />)
+                : <p className="text-text-muted text-sm">{text.comingSoon}</p>}
             </div>
           </section>
 
           <section>
             <SectionTitle title={text.web} />
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 gap-3">
               {webProjects.length > 0
-                ? webProjects.map((p) => <ProjectCard key={p.id} p={p} />)
-                : <p className="col-span-2 text-text-muted text-sm">{text.comingSoon}</p>}
+                ? webProjects.map((p) => <ProjectCard key={p.id} p={p} viewLabel={text.viewProject} />)
+                : <p className="text-text-muted text-sm">{text.comingSoon}</p>}
             </div>
           </section>
 
           <section>
             <SectionTitle title={text.app} />
-            <div className="grid md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 gap-3">
               {appProjects.length > 0
-                ? appProjects.map((p) => <ProjectCard key={p.id} p={p} />)
-                : <p className="col-span-2 text-text-muted text-sm">{text.comingSoon}</p>}
+                ? appProjects.map((p) => <ProjectCard key={p.id} p={p} viewLabel={text.viewProject} />)
+                : <p className="text-text-muted text-sm">{text.comingSoon}</p>}
             </div>
           </section>
         </div>

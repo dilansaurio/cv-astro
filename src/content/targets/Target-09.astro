@@ -9,18 +9,18 @@ const { lang } = Astro.props;
 ---
 
 <div class="col-span-1 bg-background-card p-3 sm:p-4 rounded-3xl border border-border flex flex-col bento-card">
-  <h2 class="text-base font-bold text-text leading-tight mb-1 flex items-center justify-center gap-2 pt-0 pb-0">
+  <h2 class="text-base font-bold text-text leading-tight mb-1 flex items-center justify-center gap-2 pt-0 pb-0" data-i18n="education.title">
     <iconify-icon icon="mdi:school" class="text-primary" width="20" height="20"></iconify-icon>
     {getTranslation(lang, 'education.title')}
   </h2>
 
   <div class="bg-background rounded-2xl px-3 py-3">
     <ul class="w-full flex flex-col gap-1.5">
-      <li class="flex items-start gap-2 text-xs leading-tight text-text-muted">
+      <li class="flex items-start gap-2 text-xs leading-tight text-text-muted" data-i18n="education.cert1">
         <span class="text-primary mt-0.5 shrink-0">-</span>
         {getTranslation(lang, 'education.cert1')}
       </li>
-      <li class="flex items-start gap-2 text-xs leading-tight text-text-muted">
+      <li class="flex items-start gap-2 text-xs leading-tight text-text-muted" data-i18n="education.cert2">
         <span class="text-primary mt-0.5 shrink-0">-</span>
         {getTranslation(lang, 'education.cert2')}
       </li>

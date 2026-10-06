@@ -10,7 +10,7 @@
     es: {
       "available": "Disponible",
       "hero.greeting": "Hola, soy Dilan",
-      "hero.role": "Product Designer / Front-end Developer",
+      "hero.role": "Diseñador de Producto / Desarrollador Front-end",
       "hero.description": "+3 años uniendo el diseño UI y el desarrollo frontend. Especializado en transformar prototipos de Figma en aplicaciones web y móviles escalables con React, Next.js y React Native.",
       "experience.title": "Experiencia Laboral",
       "experience.position": "Front-end Developer",
@@ -87,7 +87,7 @@
       "skills.englishLevel": "English A2",
       "skills.spanishLevel": "Spanish (Native)",
       "stats.projects": "Projects",
-      "stats.clients": "Happy Clients",
+      "stats.clients": "Designing",
       "stats.experience": "Years of Experience",
       "social.title": "Networks",
       "projects.title": "Projects",

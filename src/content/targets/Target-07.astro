@@ -22,7 +22,7 @@ const projectsData = proyectos.map((p) => ({
 
 <div class="col-span-1 min-w-0 bg-background-card p-3 sm:p-4 rounded-3xl border border-border flex flex-col bento-card animate-fade-up delay-4 overflow-hidden">
   <!-- Flex-shrink-0 evita que el encabezado se colapse -->
-  <h2 class="title-section text-xs flex-shrink-0">
+  <h2 class="title-section text-xs flex-shrink-0" data-i18n="projects.title">
     <iconify-icon icon="mdi:folder-multiple" class="text-primary" width="16" height="16"></iconify-icon>
     {getTranslation(lang, 'projects.title')}
   </h2>
@@ -59,7 +59,7 @@ const projectsData = proyectos.map((p) => ({
         </div>
       ))}
       {proyectos.length === 0 && (
-        <p class="col-span-2 text-text-muted text-xs text-center py-4">{getTranslation(lang, 'projects.comingSoon')}</p>
+        <p class="col-span-2 text-text-muted text-xs text-center py-4" data-i18n="projects.comingSoon">{getTranslation(lang, 'projects.comingSoon')}</p>
       )}
     </div>
 
